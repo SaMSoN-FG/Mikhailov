@@ -13,10 +13,8 @@ namespace DiagramPoints {
         [XtraSerializableProperty(XtraSerializationVisibility.Content)]
         public DiagramItem Item2 { get; set; }
 
-        public PointF[] Points {
-            get {
-                return new PointF[] { Item1.Location, Item2.Location };
-            }
+        public PointF[] GetPointsByOffset(Size offset) {
+                return new PointF[] { PointF.Add(Item1.Location,offset), PointF.Add(Item2.Location,offset)};
         }
         public PointF GetCenter() {
             float xCenter = Item1.Location.X + (Item2.Location.X - Item1.Location.X) / 2;

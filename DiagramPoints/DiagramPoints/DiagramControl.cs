@@ -13,7 +13,7 @@ namespace DiagramPoints {
     public partial class DiagramControl : XtraUserControl {
         internal DiagramHelper helper = new DiagramHelper();
         Size offset = new Size(-4, -7);
-        Size globalOffset = Size.Empty;
+        internal Size globalOffset = Size.Empty;
         DiagramItem dragItem;
         Point startPoint;
         Timer paintTimer = new Timer();
@@ -46,7 +46,7 @@ namespace DiagramPoints {
                 diagramID++;
             }
             foreach (var relation1 in helper.DiagramRelations) {
-                e.Graphics.DrawLines(new Pen(Color.Red, 1.5f), relation1.Points);
+                e.Graphics.DrawLines(new Pen(Color.Red, 1.5f), relation1.GetPointsByOffset(globalOffset));
                 e.Graphics.DrawString("x", Font, Brushes.Orange, PointF.Add(relation1.GetCenter(), Size.Add(offset, globalOffset)));
             }
         }
@@ -57,7 +57,7 @@ namespace DiagramPoints {
         }
         protected override void OnMouseDown(MouseEventArgs e) {
             base.OnMouseDown(e);
-            dragItem = helper.CalcHitInfo(e);
+            dragItem = helper.CalcHitInfo(Point.Add(e.Location,new Size(-globalOffset.Width, -globalOffset.Height)));
             startPoint = e.Location;
         }
 
@@ -69,6 +69,12 @@ namespace DiagramPoints {
                 startPoint.X = e.Location.X;
                 startPoint.Y = e.Location.Y;
                 Refresh();
+            } else {
+                if (e.Button != System.Windows.Forms.MouseButtons.Right) return; 
+                Point pointToSet = new Point((e.Location.X - startPoint.X),(e.Location.Y - startPoint.Y));
+                startPoint = e.Location;
+                globalOffset.Width += pointToSet.X;
+                globalOffset.Height += pointToSet.Y;
             }
         }
 

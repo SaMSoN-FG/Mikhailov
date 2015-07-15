@@ -27,8 +27,8 @@ namespace DiagramPoints{
 
         public void AddItem(object sender, EventArgs e) {
             DiagramItem item = new DiagramItem();
-            rectangleXTextEdit.Value = random.Next(10, 200);
-            rectangleYTextEdit.Value = random.Next(10, 200);
+            rectangleXTextEdit.Value = random.Next(10, 800);
+            rectangleYTextEdit.Value = random.Next(10, 800);
             item.Location = new Point((int)rectangleXTextEdit.Value, (int)rectangleYTextEdit.Value);
             helper.DiagramItems.Add(item);
         }
@@ -132,6 +132,12 @@ namespace DiagramPoints{
 
         private void doArrange(object sender, EventArgs e) {
             helper.DoArrange();
+        }
+
+        private void simpleButton14_Click(object sender, EventArgs e) {
+            int id = (int)gotoItemIdSpinEdit.Value;
+            if (id >= 0)
+                diagramControl1.globalOffset = new Size((-(int)helper.DiagramItems[id].Location.X) + diagramControl1.Width / 2, (-(int)helper.DiagramItems[id].Location.Y) + diagramControl1.Height / 2);   
         }
     }
 }
