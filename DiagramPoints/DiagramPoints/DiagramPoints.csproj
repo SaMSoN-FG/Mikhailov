@@ -131,7 +131,9 @@
     <Content Include="Test\XMLStore\SnapToNearestPoint.xml" />
     <Content Include="Test\XMLStore\TwoCrossRelation.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Test\XMLStore\ForTest\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

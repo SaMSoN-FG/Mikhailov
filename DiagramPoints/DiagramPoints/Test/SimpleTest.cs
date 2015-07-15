@@ -95,14 +95,15 @@ namespace DiagramPoints.Test {
         [Test, Explicit]
         public void MainTest() {
             using (Form1 form = new Form1()) {
-                for (int testId = 0, failedId = 0; testId < 2000; testId++) {
+                for (int testId = 0, failedId = 0; testId < 10000; testId++) {
                     InitializeDiagramItemsAndRelations(form);
                     helper = form.helper;
-                    helper.SerializeToXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\Failed\Failed_" + failedId.ToString() + ".xml");
+                    string file = @"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\Failed\" + System.DateTime.Now.ToString("dd-MM-yy HH-mm") + " Failed " + failedId.ToString() + ".xml";
+                    helper.SerializeToXMLFile(file);
                     for (int i = 0; i < 100; i++)
                         helper.DoBestFit();
                     bool isFailed = IsWrongBestFit(ref failedId);
-                    if (!isFailed) File.Delete(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\Failed\Failed_" + failedId.ToString() + ".xml");
+                    if (!isFailed) File.Delete(file);
                     form.clear(null, null);
                 }
             }
@@ -126,6 +127,28 @@ namespace DiagramPoints.Test {
 
             for (int i = 0; i < 7; i++)
                 form.makeRandomRelation(null, null);
+        }
+        [Test]
+        public void RunFailedTest() {
+           string[] files = Directory.GetFiles(@"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed");
+           foreach (string file in files) {
+               helper = new DiagramHelper();
+               helper.DeserializeFromXMLFile(file);
+               for (int i = 0; i < 1000; i++)
+                   helper.DoBestFit();
+               PointF[] initialLocations = new PointF[helper.DiagramItems.Count];
+               int j = 0;
+               foreach (var item in helper.DiagramItems) {
+                   initialLocations[j] = item.Location;
+                   j++;
+               }
+               helper.DoBestFit();
+               j = 0;
+               foreach (var item in helper.DiagramItems) {
+                   Assert.AreEqual(initialLocations[j], item.Location,file);
+                   j++;
+               }
+           }
         }
         [Test]
         public void SnapToNearestPoint() {

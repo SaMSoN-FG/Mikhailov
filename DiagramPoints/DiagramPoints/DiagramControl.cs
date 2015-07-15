@@ -13,6 +13,7 @@ namespace DiagramPoints {
     public partial class DiagramControl : XtraUserControl {
         internal DiagramHelper helper = new DiagramHelper();
         Size offset = new Size(-4, -7);
+        Size globalOffset = Size.Empty;
         DiagramItem dragItem;
         Point startPoint;
         Timer paintTimer = new Timer();
@@ -40,21 +41,19 @@ namespace DiagramPoints {
                 e.Graphics.DrawLine(Pens.LightGray, new Point(0, i), new Point(Width, i));
 
             foreach (var item in helper.DiagramItems) {
-                e.Graphics.DrawString("o", Font, Brushes.Blue, PointF.Add(item.Location, offset));
-                e.Graphics.DrawString(diagramID.ToString(), new Font(Font.FontFamily, 6.5f), Brushes.Black, PointF.Add(item.Location, new Size(2, -8)));
+                e.Graphics.DrawString("o", Font, Brushes.Blue, PointF.Add(item.Location, Size.Add(offset, globalOffset)));
+                e.Graphics.DrawString(diagramID.ToString(), new Font(Font.FontFamily, 6.5f), Brushes.Black, PointF.Add(item.Location, Size.Add(new Size(2, -8), globalOffset)));
                 diagramID++;
             }
             foreach (var relation1 in helper.DiagramRelations) {
                 e.Graphics.DrawLines(new Pen(Color.Red, 1.5f), relation1.Points);
-                e.Graphics.DrawString("x", Font, Brushes.Orange, PointF.Add(relation1.GetCenter(), offset));
+                e.Graphics.DrawString("x", Font, Brushes.Orange, PointF.Add(relation1.GetCenter(), Size.Add(offset, globalOffset)));
             }
         }
         Point lastPoint = Point.Empty;
         protected override void OnInvalidated(InvalidateEventArgs e) {
             base.OnInvalidated(e);
-            //if (lastPoint != helper.LabelPoint())
-            //lastPoint = helper.LabelPoint();
-            //labelControl1.Location = lastPoint;
+            //globalOffset = helper.GetGlobalOffset();
         }
         protected override void OnMouseDown(MouseEventArgs e) {
             base.OnMouseDown(e);
