@@ -86,6 +86,7 @@ namespace DiagramPoints {
             while (CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
             CalcPowerBetweenItems();
             CalcPowerSpringPower();
+            CalcPowerByCenterOfNonIntersectedPoints();
             DoOffset();
         }
 
@@ -160,6 +161,45 @@ namespace DiagramPoints {
                 item1.OffsetTo.Height += (float)resultY;
                 item2.OffsetTo.Width -= (float)resultX;
                 item2.OffsetTo.Height -= (float)resultY;
+            }
+        }
+        private void CalcPowerByCenterOfNonIntersectedPoints() {
+            foreach(var relation1 in DiagramRelations) {
+                double k = -(relation1.Item1.Location.Y - relation1.Item2.Location.Y) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
+                double angle = Math.Atan(k) + Math.PI / 2;
+                double hullRadius = GetDistanceBetweenPoints(relation1.Item1.Location, relation1.Item2.Location) / 2;
+                PointF center = relation1.GetCenter();
+
+                foreach(var item in DiagramItems) {
+                    if(item == relation1.Item1 || item == relation1.Item2) continue;
+                    double resultX = 0;
+                    double resultY = 0;
+                    double distance = GetDistanceBetweenPoints(item.Location, center);
+                    if(distance < hullRadius) {
+                        //double forceM = 50 / distance;
+                        //DiagramConstant.ForceOfCenterRealtion
+                        //double position = (relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X + (relation1.Item2.Location.X - relation1.Item1.Location.X) * item.Location.Y + (relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X);
+                        double forceM = 40 / distance;
+                        resultX = Math.Cos(angle) * forceM;
+                        resultY = Math.Sin(angle) * forceM;
+                        //if (position > 0)
+                        //    {
+                        //        item.OffsetTo.Height += (float)resultY;
+                        //        item.OffsetTo.Width  += (float)resultX;
+                        //    }
+                        //else
+                        //{
+                        //    item.OffsetTo.Height -= (float)resultY;
+                        //    item.OffsetTo.Width -= (float)resultX;
+                        //}
+
+
+                        //resultX = Math.Cos(angle) * forceM;
+                        //resultY = Math.Sin(angle) * forceM;
+                        item.OffsetTo.Height += (float)resultY;
+                        item.OffsetTo.Width += (float)resultX;
+                    }
+                }
             }
         }
 
