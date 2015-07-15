@@ -54,9 +54,9 @@ namespace DiagramPoints {
         internal static double GetDistanceBetweenPoints(PointF firstPoint, PointF secondPoint) {
             return Math.Sqrt(Math.Pow(firstPoint.X - secondPoint.X, 2) + Math.Pow(firstPoint.Y - secondPoint.Y, 2));
         }
-        internal DiagramItem CalcHitInfo(System.Windows.Forms.MouseEventArgs e) {
+        internal DiagramItem CalcHitInfo(Point location) {
             foreach (var item in DiagramItems) {
-                if (item.AreaRectangle.Contains(e.Location)) return item;
+                if (item.AreaRectangle.Contains(location)) return item;
             }
             return null;
         }
