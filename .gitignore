@@ -52,3 +52,8 @@ DiagramPoints/DiagramPoints/bin/Debug/DiagramPoints.pdb
 DiagramPoints/DiagramPoints/obj/Debug/DiagramPoints.exe
 *.pdb
 DiagramPoints/DiagramPoints/obj/Debug/DiagramPoints.csproj.GenerateResource.Cache
+*.suo
+DiagramPoints/DiagramPoints/bin/Debug/DiagramPoints.exe
+*.txt
+*.exe
+DiagramPoints/DiagramPoints/obj/Debug/DiagramPoints.pdb
