@@ -176,28 +176,20 @@ namespace DiagramPoints {
                     double resultY = 0;
                     double distance = GetDistanceBetweenPoints(item.Location, center);
                     if(distance < hullRadius) {
-                        //double forceM = 50 / distance;
                         //DiagramConstant.ForceOfCenterRealtion
-                        //double position = (relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X + (relation1.Item2.Location.X - relation1.Item1.Location.X) * item.Location.Y + (relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X);
-                        double forceM = 40 / distance;
+                        double positionY = -((relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X) -(relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
+                        double forceM = 50 / distance;
                         resultX = Math.Cos(angle) * forceM;
                         resultY = Math.Sin(angle) * forceM;
-                        //if (position > 0)
-                        //    {
-                        //        item.OffsetTo.Height += (float)resultY;
-                        //        item.OffsetTo.Width  += (float)resultX;
-                        //    }
-                        //else
-                        //{
-                        //    item.OffsetTo.Height -= (float)resultY;
-                        //    item.OffsetTo.Width -= (float)resultX;
-                        //}
-
-
-                        //resultX = Math.Cos(angle) * forceM;
-                        //resultY = Math.Sin(angle) * forceM;
-                        item.OffsetTo.Height += (float)resultY;
-                        item.OffsetTo.Width += (float)resultX;
+                        
+                        if(item.Location.Y < positionY) {
+                            item.OffsetTo.Height -= (float)resultY;
+                            item.OffsetTo.Width -= (float)resultX;
+                        }else{
+                            item.OffsetTo.Height += (float)resultY;
+                            item.OffsetTo.Width += (float)resultX;
+                        }
+                       
                     }
                 }
             }
