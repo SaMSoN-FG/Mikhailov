@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.Form1ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
+            this.gotoItemIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.simpleButton14 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton13 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton12 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton11 = new DevExpress.XtraEditors.SimpleButton();
@@ -71,14 +73,13 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.diagramControl1 = new DiagramPoints.DiagramControl();
-            this.simpleButton14 = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.gotoItemIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.diagramControl1 = new DiagramPoints.DiagramControl();
             ((System.ComponentModel.ISupportInitialize)(this.Form1ConvertedLayout)).BeginInit();
             this.Form1ConvertedLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gotoItemIdSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diagramItemTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rectangleXTextEdit.Properties)).BeginInit();
@@ -113,9 +114,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gotoItemIdSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +162,31 @@
             this.Form1ConvertedLayout.Root = this.layoutControlGroup1;
             this.Form1ConvertedLayout.Size = new System.Drawing.Size(170, 795);
             this.Form1ConvertedLayout.TabIndex = 29;
+            // 
+            // gotoItemIdSpinEdit
+            // 
+            this.gotoItemIdSpinEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.gotoItemIdSpinEdit.Location = new System.Drawing.Point(66, 692);
+            this.gotoItemIdSpinEdit.Name = "gotoItemIdSpinEdit";
+            this.gotoItemIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.gotoItemIdSpinEdit.Size = new System.Drawing.Size(80, 20);
+            this.gotoItemIdSpinEdit.StyleController = this.Form1ConvertedLayout;
+            this.gotoItemIdSpinEdit.TabIndex = 33;
+            // 
+            // simpleButton14
+            // 
+            this.simpleButton14.Location = new System.Drawing.Point(24, 716);
+            this.simpleButton14.Name = "simpleButton14";
+            this.simpleButton14.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton14.StyleController = this.Form1ConvertedLayout;
+            this.simpleButton14.TabIndex = 32;
+            this.simpleButton14.Text = "Go To Item";
+            this.simpleButton14.Click += new System.EventHandler(this.simpleButton14_Click);
             // 
             // simpleButton13
             // 
@@ -690,25 +715,14 @@
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
-            // diagramControl1
+            // layoutControlGroup6
             // 
-            this.diagramControl1.AutoScroll = true;
-            this.diagramControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.diagramControl1.EnableIXtraResizeableControlInterfaceProxy = false;
-            this.diagramControl1.Location = new System.Drawing.Point(0, 0);
-            this.diagramControl1.Name = "diagramControl1";
-            this.diagramControl1.Size = new System.Drawing.Size(909, 795);
-            this.diagramControl1.TabIndex = 32;
-            // 
-            // simpleButton14
-            // 
-            this.simpleButton14.Location = new System.Drawing.Point(24, 716);
-            this.simpleButton14.Name = "simpleButton14";
-            this.simpleButton14.Size = new System.Drawing.Size(122, 22);
-            this.simpleButton14.StyleController = this.Form1ConvertedLayout;
-            this.simpleButton14.TabIndex = 32;
-            this.simpleButton14.Text = "Go To Item";
-            this.simpleButton14.Click += new System.EventHandler(this.simpleButton14_Click);
+            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem22,
+            this.layoutControlItem23});
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 650);
+            this.layoutControlGroup6.Name = "layoutControlGroup6";
+            this.layoutControlGroup6.Size = new System.Drawing.Size(150, 125);
             // 
             // layoutControlItem22
             // 
@@ -719,30 +733,6 @@
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
             // 
-            // layoutControlGroup6
-            // 
-            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem22,
-            this.layoutControlItem23});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 650);
-            this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(150, 125);
-            // 
-            // gotoItemIdSpinEdit
-            // 
-            this.gotoItemIdSpinEdit.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.gotoItemIdSpinEdit.Location = new System.Drawing.Point(66, 692);
-            this.gotoItemIdSpinEdit.Name = "gotoItemIdSpinEdit";
-            this.gotoItemIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.gotoItemIdSpinEdit.Size = new System.Drawing.Size(80, 20);
-            this.gotoItemIdSpinEdit.StyleController = this.Form1ConvertedLayout;
-            this.gotoItemIdSpinEdit.TabIndex = 33;
-            // 
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.gotoItemIdSpinEdit;
@@ -751,6 +741,16 @@
             this.layoutControlItem23.Size = new System.Drawing.Size(126, 24);
             this.layoutControlItem23.Text = "itemID";
             this.layoutControlItem23.TextSize = new System.Drawing.Size(39, 13);
+            // 
+            // diagramControl1
+            // 
+            this.diagramControl1.AutoScroll = true;
+            this.diagramControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.diagramControl1.EnableIXtraResizeableControlInterfaceProxy = false;
+            this.diagramControl1.Location = new System.Drawing.Point(0, 0);
+            this.diagramControl1.Name = "diagramControl1";
+            this.diagramControl1.Size = new System.Drawing.Size(909, 795);
+            this.diagramControl1.TabIndex = 32;
             // 
             // Form1
             // 
@@ -765,6 +765,7 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.Form1ConvertedLayout)).EndInit();
             this.Form1ConvertedLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gotoItemIdSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diagramItemTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rectangleXTextEdit.Properties)).EndInit();
@@ -799,9 +800,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gotoItemIdSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             this.ResumeLayout(false);
 
