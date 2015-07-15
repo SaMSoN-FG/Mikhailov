@@ -111,7 +111,7 @@ namespace DiagramPoints{
 
         private void save(object sender, EventArgs e) {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = @"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore";
+            dialog.InitialDirectory = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed";
             dialog.Filter = "XML Files (*.xml)|*.xml";
             dialog.DefaultExt = "*.xml";
             dialog.AddExtension = true;
@@ -122,7 +122,7 @@ namespace DiagramPoints{
 
         private void load(object sender, EventArgs e) {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = @"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore";
+            dialog.InitialDirectory = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\";
             dialog.DefaultExt = "*.xml";
             if (dialog.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
             helper = new DiagramHelper();
