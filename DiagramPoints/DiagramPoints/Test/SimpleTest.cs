@@ -147,7 +147,7 @@ namespace DiagramPoints.Test {
                helper.DoBestFit();
                j = 0;
                foreach (var item in helper.DiagramItems) {
-                   Assert.AreEqual(initialLocations[j], item.Location,file);
+                   Assert.AreEqual(initialLocations[j], item.Location, file);
                    j++;
                }
            }
