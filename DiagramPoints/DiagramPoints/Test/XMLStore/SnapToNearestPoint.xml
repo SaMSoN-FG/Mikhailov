@@ -1,0 +1,8 @@
+﻿<XtraSerializer version="1.0" application="DiagramHelper">
+  <property name="DiagramItems" iskey="true" value="4">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Location">@3,X=183@3,Y=175</property>
+    </property>
+  </property>
+  <property name="DiagramRelations" iskey="true" value="0" />
+</XtraSerializer>

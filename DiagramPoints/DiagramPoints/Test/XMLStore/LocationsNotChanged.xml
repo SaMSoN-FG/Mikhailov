@@ -1,0 +1,31 @@
+﻿<XtraSerializer version="1.0" application="DiagramHelper">
+  <property name="DiagramItems" iskey="true" value="3">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Location">@3,X=140@3,Y=104</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Location">@3,X=196@3,Y=104</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Location">@3,X=152@3,Y=153</property>
+    </property>
+  </property>
+  <property name="DiagramRelations" iskey="true" value="2">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=140@3,Y=104</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=196@3,Y=104</property>
+      </property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=152@3,Y=153</property>
+      </property>
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=196@3,Y=104</property>
+      </property>
+    </property>
+  </property>
+</XtraSerializer>

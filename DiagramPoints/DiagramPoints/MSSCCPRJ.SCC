@@ -1,0 +1,6 @@
+SCC = This is a Source Code Control file
+
+[DiagramPoints.csproj]
+SCC_Aux_Path = "net.tcp://vcsservice.devexpress.dev:9091/DXVCSService"
+SCC_Project_Name = "$/Sandbox/Mikhailov/DiagramPoints/DiagramPoints"
+
