@@ -75,7 +75,12 @@ namespace DiagramPoints {
             }
             DoOffset();
         }
-
+        internal Point LabelPoint() {
+         if (DiagramItems.Count == 0) return Point.Empty;
+            float maxX = DiagramItems.Select(di => di.Location.X).Max();
+            float maxY = DiagramItems.Select(di => di.Location.Y).Max();
+            return  new Point((int)maxX, (int)maxY);
+        }
         internal void DoBestFit() {
             int watchDog = 5;
             while (CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }

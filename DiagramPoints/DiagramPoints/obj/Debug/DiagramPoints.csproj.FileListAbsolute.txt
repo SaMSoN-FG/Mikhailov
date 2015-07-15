@@ -6,4 +6,4 @@ D:\Project\Mikhailov\DiagramPoints\DiagramPoints\obj\Debug\DiagramPoints.Propert
 D:\Project\Mikhailov\DiagramPoints\DiagramPoints\obj\Debug\DiagramPoints.csproj.GenerateResource.Cache
 D:\Project\Mikhailov\DiagramPoints\DiagramPoints\obj\Debug\DiagramPoints.exe
 D:\Project\Mikhailov\DiagramPoints\DiagramPoints\obj\Debug\DiagramPoints.pdb
-D:\Project\Mikhailov\DiagramPoints\DiagramPoints\obj\Debug\DiagramPoints.csprojResolveAssemblyReference.cache
+D:\Project\Mikhailov\DiagramPoints\DiagramPoints\obj\Debug\DiagramPoints.DiagramControl.resources
