@@ -42,3 +42,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.suo
+*.exe
+DiagramPoints/DiagramPoints/bin/Debug/DiagramPoints.pdb
+*.exe
+DiagramPoints/DiagramPoints.v12.suo
+*.zip
