@@ -1,0 +1,107 @@
+﻿<XtraSerializer version="1.0" application="DiagramHelper">
+  <property name="DiagramItems" iskey="true" value="15">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Location">@3,X=183@2,Y=51</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Location">@3,X=152@3,Y=102</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Location">@2,X=77@2,Y=70</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Location">@2,X=10@2,Y=60</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Location">@2,X=94@2,Y=21</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Location">@3,X=166@3,Y=187</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Location">@2,X=71@3,Y=122</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Location">@2,X=10@2,Y=78</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="Location">@3,X=105@2,Y=12</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Location">@3,X=103@2,Y=24</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="Location">@2,X=12@2,Y=33</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Location">@3,X=100@2,Y=22</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Location">@2,X=70@2,Y=73</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Location">@3,X=126@3,Y=108</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Location">@3,X=184@2,Y=26</property>
+    </property>
+  </property>
+  <property name="DiagramRelations" iskey="true" value="7">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=166@3,Y=187</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@2,X=77@2,Y=70</property>
+      </property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@2,X=94@2,Y=21</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=166@3,Y=187</property>
+      </property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=105@2,Y=12</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=126@3,Y=108</property>
+      </property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=100@2,Y=22</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@2,X=77@2,Y=70</property>
+      </property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@2,X=94@2,Y=21</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@2,X=70@2,Y=73</property>
+      </property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@2,X=94@2,Y=21</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=100@2,Y=22</property>
+      </property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@2,X=12@2,Y=33</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=184@2,Y=26</property>
+      </property>
+    </property>
+  </property>
+</XtraSerializer>

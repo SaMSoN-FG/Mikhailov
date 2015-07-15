@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -95,10 +96,11 @@ namespace DiagramPoints.Test {
         [Test, Explicit]
         public void MainTest() {
             using (Form1 form = new Form1()) {
-                for (int testId = 0, failedId = 0; testId < 10000; testId++) {
+                string[] files = Directory.GetFiles(@"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed");
+                for (int testId = 0, failedId = files.Count(); testId < 1000; testId++) {
                     InitializeDiagramItemsAndRelations(form);
                     helper = form.helper;
-                    string file = @"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\Failed\" + System.DateTime.Now.ToString("dd-MM-yy HH-mm") + " Failed " + failedId.ToString() + ".xml";
+                    string file = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed\Failed_" + failedId.ToString() + ".xml";
                     helper.SerializeToXMLFile(file);
                     for (int i = 0; i < 100; i++)
                         helper.DoBestFit();
@@ -125,7 +127,7 @@ namespace DiagramPoints.Test {
             for (int i = 0; i < 15; i++)
                 form.AddItem(null, null);
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 10; i++)
                 form.makeRandomRelation(null, null);
         }
         [Test]

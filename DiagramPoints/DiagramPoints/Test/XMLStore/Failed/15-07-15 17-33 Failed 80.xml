@@ -1,0 +1,366 @@
+﻿<XtraSerializer version="1.0" application="DiagramHelper">
+  <property name="DiagramItems" iskey="true" value="40">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Location">@3,X=173@3,Y=764</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Location">@3,X=538@2,Y=26</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Location">@3,X=113@2,Y=74</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Location">@3,X=573@3,Y=560</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Location">@3,X=157@3,Y=135</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Location">@3,X=419@3,Y=229</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Location">@3,X=548@3,Y=565</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Location">@3,X=697@3,Y=586</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="Location">@2,X=61@3,Y=486</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Location">@3,X=565@3,Y=706</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="Location">@3,X=546@3,Y=248</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Location">@3,X=394@3,Y=594</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Location">@3,X=386@3,Y=239</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Location">@3,X=635@3,Y=666</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Location">@3,X=701@3,Y=485</property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="Location">@3,X=555@2,Y=24</property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="Location">@3,X=128@3,Y=252</property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="Location">@3,X=205@3,Y=778</property>
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="Location">@3,X=310@3,Y=433</property>
+    </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="Location">@3,X=710@3,Y=683</property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="Location">@3,X=421@2,Y=65</property>
+    </property>
+    <property name="Item22" isnull="true" iskey="true">
+      <property name="Location">@3,X=655@3,Y=202</property>
+    </property>
+    <property name="Item23" isnull="true" iskey="true">
+      <property name="Location">@3,X=183@2,Y=39</property>
+    </property>
+    <property name="Item24" isnull="true" iskey="true">
+      <property name="Location">@3,X=334@3,Y=371</property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="Location">@3,X=484@3,Y=122</property>
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="Location">@3,X=433@3,Y=215</property>
+    </property>
+    <property name="Item27" isnull="true" iskey="true">
+      <property name="Location">@2,X=77@3,Y=706</property>
+    </property>
+    <property name="Item28" isnull="true" iskey="true">
+      <property name="Location">@2,X=32@3,Y=724</property>
+    </property>
+    <property name="Item29" isnull="true" iskey="true">
+      <property name="Location">@3,X=379@3,Y=744</property>
+    </property>
+    <property name="Item30" isnull="true" iskey="true">
+      <property name="Location">@3,X=439@3,Y=674</property>
+    </property>
+    <property name="Item31" isnull="true" iskey="true">
+      <property name="Location">@3,X=239@3,Y=707</property>
+    </property>
+    <property name="Item32" isnull="true" iskey="true">
+      <property name="Location">@3,X=659@3,Y=471</property>
+    </property>
+    <property name="Item33" isnull="true" iskey="true">
+      <property name="Location">@3,X=380@3,Y=404</property>
+    </property>
+    <property name="Item34" isnull="true" iskey="true">
+      <property name="Location">@3,X=111@3,Y=305</property>
+    </property>
+    <property name="Item35" isnull="true" iskey="true">
+      <property name="Location">@3,X=370@3,Y=719</property>
+    </property>
+    <property name="Item36" isnull="true" iskey="true">
+      <property name="Location">@3,X=286@3,Y=428</property>
+    </property>
+    <property name="Item37" isnull="true" iskey="true">
+      <property name="Location">@3,X=576@3,Y=681</property>
+    </property>
+    <property name="Item38" isnull="true" iskey="true">
+      <property name="Location">@3,X=294@3,Y=490</property>
+    </property>
+    <property name="Item39" isnull="true" iskey="true">
+      <property name="Location">@3,X=392@3,Y=201</property>
+    </property>
+    <property name="Item40" isnull="true" iskey="true">
+      <property name="Location">@3,X=420@3,Y=357</property>
+    </property>
+  </property>
+  <property name="DiagramRelations" iskey="true" value="30">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=635@3,Y=666</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=286@3,Y=428</property>
+      </property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=439@3,Y=674</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=565@3,Y=706</property>
+      </property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=205@3,Y=778</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=113@2,Y=74</property>
+      </property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=546@3,Y=248</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=294@3,Y=490</property>
+      </property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=635@3,Y=666</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=394@3,Y=594</property>
+      </property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=310@3,Y=433</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=421@2,Y=65</property>
+      </property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=538@2,Y=26</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=420@3,Y=357</property>
+      </property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=433@3,Y=215</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=183@2,Y=39</property>
+      </property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=239@3,Y=707</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=565@3,Y=706</property>
+      </property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=576@3,Y=681</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=379@3,Y=744</property>
+      </property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=173@3,Y=764</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=538@2,Y=26</property>
+      </property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=659@3,Y=471</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=379@3,Y=744</property>
+      </property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=655@3,Y=202</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=173@3,Y=764</property>
+      </property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=421@2,Y=65</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=565@3,Y=706</property>
+      </property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=565@3,Y=706</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=128@3,Y=252</property>
+      </property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=157@3,Y=135</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=128@3,Y=252</property>
+      </property>
+    </property>
+    <property name="Item17" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@2,X=77@3,Y=706</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=392@3,Y=201</property>
+      </property>
+    </property>
+    <property name="Item18" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=421@2,Y=65</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=573@3,Y=560</property>
+      </property>
+    </property>
+    <property name="Item19" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=183@2,Y=39</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=538@2,Y=26</property>
+      </property>
+    </property>
+    <property name="Item20" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=573@3,Y=560</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=370@3,Y=719</property>
+      </property>
+    </property>
+    <property name="Item21" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=555@2,Y=24</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=157@3,Y=135</property>
+      </property>
+    </property>
+    <property name="Item22" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=655@3,Y=202</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=286@3,Y=428</property>
+      </property>
+    </property>
+    <property name="Item23" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=394@3,Y=594</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@2,X=77@3,Y=706</property>
+      </property>
+    </property>
+    <property name="Item24" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=701@3,Y=485</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=379@3,Y=744</property>
+      </property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=310@3,Y=433</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=546@3,Y=248</property>
+      </property>
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=655@3,Y=202</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=659@3,Y=471</property>
+      </property>
+    </property>
+    <property name="Item27" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=635@3,Y=666</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=111@3,Y=305</property>
+      </property>
+    </property>
+    <property name="Item28" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=294@3,Y=490</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=655@3,Y=202</property>
+      </property>
+    </property>
+    <property name="Item29" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=286@3,Y=428</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@3,X=113@2,Y=74</property>
+      </property>
+    </property>
+    <property name="Item30" isnull="true" iskey="true">
+      <property name="Item2" isnull="true" iskey="true">
+        <property name="Location">@3,X=439@3,Y=674</property>
+      </property>
+      <property name="Item1" isnull="true" iskey="true">
+        <property name="Location">@2,X=32@3,Y=724</property>
+      </property>
+    </property>
+  </property>
+</XtraSerializer>
