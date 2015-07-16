@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DiagramPoints{
     public partial class Form1 : XtraForm {
@@ -112,7 +113,8 @@ namespace DiagramPoints{
 
         private void save(object sender, EventArgs e) {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed";
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\Failed");
+            dialog.InitialDirectory = di.FullName;
             dialog.Filter = "XML Files (*.xml)|*.xml";
             dialog.DefaultExt = "*.xml";
             dialog.AddExtension = true;
@@ -123,7 +125,8 @@ namespace DiagramPoints{
 
         private void load(object sender, EventArgs e) {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\";
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore");
+            dialog.InitialDirectory = di.FullName;
             dialog.DefaultExt = "*.xml";
             if (dialog.ShowDialog(this) != DialogResult.OK) return;
             helper = new DiagramHelper();

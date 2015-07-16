@@ -24,21 +24,21 @@ namespace DiagramPoints.Test {
         [Test, Explicit]
         public void ShowForm() {
             using (Form1 form = new Form1()) {
-                helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\LocationsNotChanged.xml");
+                helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\LocationsNotChanged.xml");
                 form.helper = helper;
                 form.ShowDialog();
             }
         }
         [Test]
         public void TwoCrossTest() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\TwoCrossRelation.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\TwoCrossRelation.xml");
             for (int i = 0; i < 20; i++)
                 helper.DoBestFit();
             Assert.AreEqual(PointF.Empty, DiagramHelper.IntersectLines(helper.DiagramRelations[0].Item1.Location, helper.DiagramRelations[0].Item2.Location, helper.DiagramRelations[1].Item1.Location, helper.DiagramRelations[1].Item2.Location));
         }
         [Test]
         public void ProcessConverges() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\ProcessConverges.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\ProcessConverges.xml");
             for (int i = 0; i < 40; i++)
                 helper.DoBestFit();
             PointF rel1item1 = helper.DiagramRelations[0].Item1.Location;
@@ -49,7 +49,7 @@ namespace DiagramPoints.Test {
         }
         [Test]
         public void LocationOverZero() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\LocationOverZero.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\LocationOverZero.xml");
             for (int i = 0; i < 100; i++)
                 helper.DoBestFit();
             foreach (var item in helper.DiagramItems) {
@@ -58,7 +58,7 @@ namespace DiagramPoints.Test {
         }
         [Test]
         public void ItemsDiverge() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\ItemsDiverge.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\ItemsDiverge.xml");
             double initialDistance = DiagramHelper.GetDistanceBetweenPoints(helper.DiagramItems[0].Location, helper.DiagramItems[1].Location);
             for (int i = 0; i < 2; i++)
                 helper.DoBestFit();
@@ -67,7 +67,7 @@ namespace DiagramPoints.Test {
         }
         [Test]
         public void IntersectionWithTwoRelatons() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\IntersectionWithTwoRelatons.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\IntersectionWithTwoRelatons.xml");
             for (int i = 0; i < 20; i++)
                 helper.DoBestFit();
             for (int i = 0; i <= 2; i++)
@@ -77,7 +77,7 @@ namespace DiagramPoints.Test {
         }
         [Test]
         public void LocationsNotChanged() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\LocationsNotChanged.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\LocationsNotChanged.xml");
             for (int i = 0; i < 100; i++)
                 helper.DoBestFit();
             PointF[] initialLocations = new PointF[helper.DiagramItems.Count];
@@ -96,11 +96,11 @@ namespace DiagramPoints.Test {
         [Test, Explicit]
         public void MainTest() {
             using (Form1 form = new Form1()) {
-                string[] files = Directory.GetFiles(@"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed");
+                string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\Failed");
                 for (int testId = 0, failedId = files.Count(); testId < 1000; testId++) {
                     InitializeDiagramItemsAndRelations(form);
                     helper = form.helper;
-                    string file = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed\Failed_" + failedId.ToString() + ".xml";
+                    string file = Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\Failed\Failed_" + failedId.ToString() + ".xml";
                     helper.SerializeToXMLFile(file);
                     for (int i = 0; i < 100; i++)
                         helper.DoBestFit();
@@ -132,11 +132,11 @@ namespace DiagramPoints.Test {
         }
         [Test]
         public void RunFailedTest() {
-           string[] files = Directory.GetFiles(@"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\Failed");
+           string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\Failed");
            foreach (string file in files) {
                helper = new DiagramHelper();
                helper.DeserializeFromXMLFile(file);
-               for (int i = 0; i < 1000; i++)
+               for (int i = 0; i < 2000; i++)
                    helper.DoBestFit();
                PointF[] initialLocations = new PointF[helper.DiagramItems.Count];
                int j = 0;
@@ -147,14 +147,15 @@ namespace DiagramPoints.Test {
                helper.DoBestFit();
                j = 0;
                foreach (var item in helper.DiagramItems) {
-                   Assert.AreEqual(initialLocations[j], item.Location, file);
+                   Assert.AreEqual(Math.Round(initialLocations[j].X, 0), Math.Round(item.Location.X, 0), file);
+                   Assert.AreEqual(Math.Round(initialLocations[j].Y, 0), Math.Round(item.Location.Y, 0), file);
                    j++;
                }
            }
         }
         [Test]
         public void SnapToNearestPoint() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\SnapToNearestPoint.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\SnapToNearestPoint.xml");
             helper.DoArrange();
             Assert.IsTrue(helper.DiagramItems[0].Location == new PointF(0, 0));
             Assert.IsTrue(helper.DiagramItems[1].Location == new PointF(150, 0));
@@ -163,7 +164,7 @@ namespace DiagramPoints.Test {
         }
         [Test]
         public void InNodeSinglePoint() {
-            helper.DeserializeFromXMLFile(@"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore\InNodeSinglePoint.xml");
+            helper.DeserializeFromXMLFile(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\InNodeSinglePoint.xml");
             for (int i = 0; i < 20; i++)
                 helper.DoBestFit();
             helper.DoArrange();
