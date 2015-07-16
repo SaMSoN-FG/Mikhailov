@@ -136,6 +136,7 @@ namespace DiagramPoints.Test {
            foreach (string file in files) {
                helper = new DiagramHelper();
                helper.DeserializeFromXMLFile(file);
+               helper.PrepareForBestFit(new Size(1000, 1000));
                for (int i = 0; i < 2000; i++)
                    helper.DoBestFit();
                PointF[] initialLocations = new PointF[helper.DiagramItems.Count];
