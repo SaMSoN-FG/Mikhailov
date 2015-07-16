@@ -22,7 +22,6 @@ namespace DiagramPoints {
     class GraphProcessor {
         List<DiagramItem> vertices;
         List<DiagramRelation> edges;
-        List<List<DiagramItem>> connectedComponents;
         List<DiagramItem> list;
         List<bool> used;
         public GraphProcessor(List<DiagramItem> vertices, List<DiagramRelation> edges) {
