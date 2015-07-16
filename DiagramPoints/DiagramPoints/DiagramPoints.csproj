@@ -82,6 +82,7 @@
     <Compile Include="DiagramControl.Designer.cs">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeLayout.cs" />
     <EmbeddedResource Include="DiagramControl.resx">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </EmbeddedResource>

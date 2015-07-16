@@ -24,12 +24,13 @@ namespace DiagramPoints{
             helper.DoBestFit();
             
         }
-
+        int counter;//TODO
         public void AddItem(object sender, EventArgs e) {
             DiagramItem item = new DiagramItem();
             rectangleXTextEdit.Value = random.Next(10, 800);
             rectangleYTextEdit.Value = random.Next(10, 800);
             item.Location = new Point((int)rectangleXTextEdit.Value, (int)rectangleYTextEdit.Value);
+            item.Id = counter++;//TODO id can be random
             helper.DiagramItems.Add(item);
         }
 
@@ -124,7 +125,7 @@ namespace DiagramPoints{
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = @"D:\Project\Mikhailov\DiagramPoints\DiagramPoints\Test\XMLStore\";
             dialog.DefaultExt = "*.xml";
-            if (dialog.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+            if (dialog.ShowDialog(this) != DialogResult.OK) return;
             helper = new DiagramHelper();
             helper.DeserializeFromXMLFile(dialog.FileName);
             

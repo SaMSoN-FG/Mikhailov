@@ -1,10 +1,6 @@
 ﻿using DevExpress.Utils.Serializing;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiagramPoints {
     public class DiagramItem {
@@ -13,6 +9,7 @@ namespace DiagramPoints {
                 return new RectangleF(Location.X - 5, Location.Y - 5, 10, 10);
             }
         }
+        public int Id { get; set; }
         PointF locationCore;
         [XtraSerializableProperty()]
         public PointF Location { get { return locationCore; } set { locationCore = value; } }
