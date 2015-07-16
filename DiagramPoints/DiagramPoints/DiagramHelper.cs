@@ -237,17 +237,19 @@ namespace DiagramPoints {
             GraphProcessor processor = new GraphProcessor(DiagramItems, DiagramRelations);
             List<Graph> listGraph = processor.SearchConnectedComponents();
             Random rand = new Random();
-            int globalY = Size.Height / listGraph.Count;
+            int globalY = Size.Height / DiagramItems.Count;
             int beginX = 0;
             int beginY = 0;
-            foreach(var graph in listGraph) {
+            foreach(var graph in listGraph.OrderBy(e=>e.Vertices.Count)) {
                 int globalX = Size.Width / graph.Vertices.Count;
                 beginX = 0;
+                int counter = 0;
                 foreach(var vertices in graph.Vertices.OrderBy(e => e.EdgesCount)) {
-                    vertices.Location = new PointF(beginX, rand.Next(beginY, beginY + globalY));
+                    vertices.Location = new PointF(counter % 2 == 0 ? beginX : Size.Width - beginX, rand.Next(beginY, beginY + graph.Vertices.Count * globalY));
                     beginX += globalX;
+                    counter++;
                 }
-                beginY += globalY;
+                beginY += graph.Vertices.Count * globalY;
             }
         }
     }
