@@ -82,7 +82,7 @@ namespace DiagramPoints {
             return  new Size((int)maxX, (int)maxY);
         }
         internal void DoBestFit() {
-            int watchDog = 5;
+            int watchDog = 5;                                                   
             while (CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
             CalcPowerBetweenItems();
             CalcPowerSpringPower();
