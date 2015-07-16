@@ -25,13 +25,11 @@ namespace DiagramPoints{
             helper.DoBestFit();
             
         }
-        int counter;//TODO
         public void AddItem(object sender, EventArgs e) {
-            DiagramItem item = new DiagramItem();
+            DiagramItem item = new DiagramItem(helper);
             rectangleXTextEdit.Value = random.Next(10, 800);
             rectangleYTextEdit.Value = random.Next(10, 800);
             item.Location = new Point((int)rectangleXTextEdit.Value, (int)rectangleYTextEdit.Value);
-            item.Id = counter++;//TODO id can be random
             helper.DiagramItems.Add(item);
         }
 
@@ -142,6 +140,10 @@ namespace DiagramPoints{
             int id = (int)gotoItemIdSpinEdit.Value;
             if (id >= 0 && id < helper.DiagramItems.Count)
                 diagramControl1.globalOffset = new Size((-(int)helper.DiagramItems[id].Location.X) + diagramControl1.Width / 2, (-(int)helper.DiagramItems[id].Location.Y) + diagramControl1.Height / 2);   
+        }
+
+        private void simpleButton15_Click(object sender, EventArgs e) {
+            helper.PrepareForBestFit(diagramControl1.Size);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Linq;
 
 namespace DiagramPoints {
-    class Graph {
+   class Graph {
         List<DiagramItem> vertices;
         List<DiagramRelation> edges;
         public Graph(List<DiagramItem> vertices, List<DiagramRelation> edges) {

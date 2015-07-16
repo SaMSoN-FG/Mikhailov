@@ -17,7 +17,7 @@ namespace DiagramPoints {
         [XtraSerializableProperty(XtraSerializationVisibility.Collection, true, false, false, 1)]
         public List<DiagramItem> DiagramItems { get; set; }
         internal object XtraCreateDiagramItemsItem(XtraItemEventArgs e) {
-            DiagramItem item = new DiagramItem();
+            DiagramItem item = new DiagramItem(this);
             DiagramItems.Add(item);
             return item;
         }
@@ -55,14 +55,14 @@ namespace DiagramPoints {
             return Math.Sqrt(Math.Pow(firstPoint.X - secondPoint.X, 2) + Math.Pow(firstPoint.Y - secondPoint.Y, 2));
         }
         internal DiagramItem CalcHitInfo(Point location) {
-            foreach (var item in DiagramItems) {
-                if (item.AreaRectangle.Contains(location)) return item;
+            foreach(var item in DiagramItems) {
+                if(item.AreaRectangle.Contains(location)) return item;
             }
             return null;
         }
 
         internal void DoArrange() {
-            foreach (var item in DiagramItems) {
+            foreach(var item in DiagramItems) {
                 Point nearestPoint = GetNearestPointByCellSize(item.Location);
                 //bool nearestPointIsNotFree = false;
                 //foreach (var i in DiagramItems) {
@@ -76,50 +76,49 @@ namespace DiagramPoints {
             DoOffset();
         }
         internal Size GetGlobalOffset() {
-         if (DiagramItems.Count == 0) return Size.Empty;
+            if(DiagramItems.Count == 0) return Size.Empty;
             float maxX = DiagramItems.Select(di => di.Location.X).Max();
             float maxY = DiagramItems.Select(di => di.Location.Y).Max();
-            return  new Size((int)maxX, (int)maxY);
+            return new Size((int)maxX, (int)maxY);
         }
         internal void DoBestFit() {
-            int watchDog = 5;                                                   
-            while (CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
+            int watchDog = 5;
+            while(CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
             CalcPowerBetweenItems();
             CalcPowerSpringPower();
             CalcPowerByCenterOfNonIntersectedPoints();
             DoOffset();
         }
-
         private Point GetNearestPointByCellSize(PointF pointF) {
             double resultX = CellSize.Width * (int)(pointF.X / CellSize.Width);
-            if (pointF.X > resultX + cellSizeCore.Width / 2) resultX += CellSize.Width;
+            if(pointF.X > resultX + cellSizeCore.Width / 2) resultX += CellSize.Width;
             double resultY = CellSize.Height * (int)(pointF.Y / CellSize.Height);
-            if (pointF.Y > resultY + CellSize.Height / 2) resultY += CellSize.Height;
+            if(pointF.Y > resultY + CellSize.Height / 2) resultY += CellSize.Height;
             return new Point((int)resultX, (int)resultY);
         }
 
         internal void DoOffset() {
-            if (DiagramItems.Count == 0) return;
-            foreach (var item in DiagramItems) {
+            if(DiagramItems.Count == 0) return;
+            foreach(var item in DiagramItems) {
                 item.DoOffset();
             }
             float minX = DiagramItems.Select(e => e.Location.X).Min();
             float minY = DiagramItems.Select(e => e.Location.Y).Min();
-            foreach (var item in DiagramItems) {
-                if (minX < 0) item.OffsetTo.Width = -minX;
-                if (minY < 0) item.OffsetTo.Height = -minY;
+            foreach(var item in DiagramItems) {
+                if(minX < 0) item.OffsetTo.Width = -minX;
+                if(minY < 0) item.OffsetTo.Height = -minY;
                 item.DoOffset();
             }
         }
         private bool CalcPowerByCenterOfPoints() {
             bool result = false;
-            foreach (var relation1 in DiagramRelations) {
-                foreach (var relation2 in DiagramRelations) {
+            foreach(var relation1 in DiagramRelations) {
+                foreach(var relation2 in DiagramRelations) {
                     double resultX = 0;
                     double resultY = 0;
-                    if (relation1 == relation2) break;
+                    if(relation1 == relation2) break;
                     PointF intersect = IntersectLines(relation1.Item1.Location, relation1.Item2.Location, relation2.Item1.Location, relation2.Item2.Location);
-                    if (intersect == PointF.Empty) continue;
+                    if(intersect == PointF.Empty) continue;
                     PointF relationCountPoint = GetPointByCountOfRelation(relation1);
                     resultX = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.X + intersect.X) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
                     resultY = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.Y + intersect.Y) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
@@ -132,10 +131,10 @@ namespace DiagramPoints {
                     relationCountPoint = GetPointByCountOfRelation(relation2);
                     resultX = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.X + intersect.X) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
                     resultY = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.Y + intersect.Y) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
-                    relation1.Item1.OffsetTo.Width += (float)resultX;
-                    relation1.Item2.OffsetTo.Width += (float)resultX;
-                    relation1.Item1.OffsetTo.Height += (float)resultY;
-                    relation1.Item2.OffsetTo.Height += (float)resultY;
+                    relation1.Item1.OffsetTo.Width -= (float)resultX;
+                    relation1.Item2.OffsetTo.Width -= (float)resultX;
+                    relation1.Item1.OffsetTo.Height -= (float)resultY;
+                    relation1.Item2.OffsetTo.Height -= (float)resultY;
                 }
 
             }
@@ -149,12 +148,12 @@ namespace DiagramPoints {
         }
 
         private void CalcPowerSpringPower() {
-            foreach (var relation in DiagramRelations) {
+            foreach(var relation in DiagramRelations) {
                 var item1 = relation.Item1;
                 var item2 = relation.Item2;
                 double distance = GetDistanceBetweenPoints(item1.Location, item2.Location);
                 double PowerOfRepel = DiagramConstant.BestLengthOfRepelRelation - distance;
-                if (distance == 0) continue;
+                if(distance == 0) continue;
                 double resultX = PowerOfRepel * ((item1.Location.X - item2.Location.X) / distance) * DiagramConstant.ForceOfRepelRelation;
                 double resultY = PowerOfRepel * ((item1.Location.Y - item2.Location.Y) / distance) * DiagramConstant.ForceOfRepelRelation;
                 item1.OffsetTo.Width += (float)resultX;
@@ -177,32 +176,32 @@ namespace DiagramPoints {
                     double distance = GetDistanceBetweenPoints(item.Location, center);
                     if(distance < hullRadius) {
                         //DiagramConstant.ForceOfCenterRealtion
-                        double positionY = -((relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X) -(relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
+                        double positionY = -((relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X) - (relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
                         double forceM = DiagramConstant.PowerByCenterOfNonIntersectedPoints / distance;
                         resultX = Math.Cos(angle) * forceM;
                         resultY = Math.Sin(angle) * forceM;
-                        
+
                         if(item.Location.Y < positionY) {
                             item.OffsetTo.Height -= (float)resultY;
                             item.OffsetTo.Width -= (float)resultX;
-                        }else{
+                        } else {
                             item.OffsetTo.Height += (float)resultY;
                             item.OffsetTo.Width += (float)resultX;
                         }
-                       
+
                     }
                 }
             }
         }
 
         private void CalcPowerBetweenItems() {
-            foreach (var item1 in DiagramItems) {
+            foreach(var item1 in DiagramItems) {
                 double resultX = 0;
                 double resultY = 0;
-                foreach (var item2 in DiagramItems) {
-                    if (item1 == item2 || item1.Location == item2.Location) continue;
+                foreach(var item2 in DiagramItems) {
+                    if(item1 == item2 || item1.Location == item2.Location) continue;
                     double distance = GetDistanceBetweenPoints(item1.Location, item2.Location);
-                    if (distance > DiagramConstant.MaxDistanceBetweenItemsForSetPower && distance != 0) continue;
+                    if(distance > DiagramConstant.MaxDistanceBetweenItemsForSetPower && distance != 0) continue;
                     resultX += ((DiagramConstant.MaxDistanceBetweenItemsForSetPower - distance) * (item1.Location.X - item2.Location.X) / distance) * DiagramConstant.ForceOfRepelBetweenItems;
                     resultY += ((DiagramConstant.MaxDistanceBetweenItemsForSetPower - distance) * (item1.Location.Y - item2.Location.Y) / distance) * DiagramConstant.ForceOfRepelBetweenItems;
                 }
@@ -213,28 +212,44 @@ namespace DiagramPoints {
 
         internal static PointF IntersectLines(PointF line1Begin, PointF line1End, PointF line2Begin, PointF line2End) {
             float tolerance = 1f;
-            if (line1Begin == line2Begin || line1Begin == line2End || line1End == line2End || line1End == line2Begin) return PointF.Empty;
+            if(line1Begin == line2Begin || line1Begin == line2End || line1End == line2End || line1End == line2Begin) return PointF.Empty;
             float a = Det2(line1Begin.X - line1End.X, line1Begin.Y - line1End.Y, line2Begin.X - line2End.X, line2Begin.Y - line2End.Y);
-            if (Math.Abs(a) < float.Epsilon) return PointF.Empty; // Lines are parallel
+            if(Math.Abs(a) < float.Epsilon) return PointF.Empty; // Lines are parallel
 
             float d1 = Det2(line1Begin.X, line1Begin.Y, line1End.X, line1End.Y);
             float d2 = Det2(line2Begin.X, line2Begin.Y, line2End.X, line2End.Y);
             float x = Det2(d1, line1Begin.X - line1End.X, d2, line2Begin.X - line2End.X) / a;
             float y = Det2(d1, line1Begin.Y - line1End.Y, d2, line2Begin.Y - line2End.Y) / a;
 
-            if (x < Math.Min(line1Begin.X, line1End.X) - tolerance || x > Math.Max(line1Begin.X, line1End.X) + tolerance) return PointF.Empty;
-            if (y < Math.Min(line1Begin.Y, line1End.Y) - tolerance || y > Math.Max(line1Begin.Y, line1End.Y) + tolerance) return PointF.Empty;
-            if (x < Math.Min(line2Begin.X, line2End.X) - tolerance || x > Math.Max(line2Begin.X, line2End.X) + tolerance) return PointF.Empty;
-            if (y < Math.Min(line2Begin.Y, line2End.Y) - tolerance || y > Math.Max(line2Begin.Y, line2End.Y) + tolerance) return PointF.Empty;
+            if(x < Math.Min(line1Begin.X, line1End.X) - tolerance || x > Math.Max(line1Begin.X, line1End.X) + tolerance) return PointF.Empty;
+            if(y < Math.Min(line1Begin.Y, line1End.Y) - tolerance || y > Math.Max(line1Begin.Y, line1End.Y) + tolerance) return PointF.Empty;
+            if(x < Math.Min(line2Begin.X, line2End.X) - tolerance || x > Math.Max(line2Begin.X, line2End.X) + tolerance) return PointF.Empty;
+            if(y < Math.Min(line2Begin.Y, line2End.Y) - tolerance || y > Math.Max(line2Begin.Y, line2End.Y) + tolerance) return PointF.Empty;
             PointF result = new PointF(x, y);
-            if (result == line1Begin || result == line1End || result == line2Begin || result == line2End) return PointF.Empty;
+            if(result == line1Begin || result == line1End || result == line2Begin || result == line2End) return PointF.Empty;
             return new PointF(x, y);
         }
         static float Det2(float x1, float x2, float y1, float y2) {
             return (x1 * y2 - y1 * x2);
         }
 
-       
+        internal void PrepareForBestFit(Size Size) {
+            GraphProcessor processor = new GraphProcessor(DiagramItems, DiagramRelations);
+            List<Graph> listGraph = processor.SearchConnectedComponents();
+            Random rand = new Random();
+            int globalY = Size.Height / listGraph.Count;
+            int beginX = 0;
+            int beginY = 0;
+            foreach(var graph in listGraph) {
+                int globalX = Size.Width / graph.Vertices.Count;
+                beginX = 0;
+                foreach(var vertices in graph.Vertices.OrderBy(e => e.EdgesCount)) {
+                    vertices.Location = new PointF(beginX, rand.Next(beginY, beginY + globalY));
+                    beginX += globalX;
+                }
+                beginY += globalY;
+            }
+        }
     }
 }
 

@@ -77,6 +77,8 @@
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.diagramControl1 = new DiagramPoints.DiagramControl();
+            this.simpleButton15 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.Form1ConvertedLayout)).BeginInit();
             this.Form1ConvertedLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gotoItemIdSpinEdit.Properties)).BeginInit();
@@ -117,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             this.SuspendLayout();
             // 
             // simpleButton1
@@ -132,6 +135,7 @@
             // 
             // Form1ConvertedLayout
             // 
+            this.Form1ConvertedLayout.Controls.Add(this.simpleButton15);
             this.Form1ConvertedLayout.Controls.Add(this.gotoItemIdSpinEdit);
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton14);
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton13);
@@ -170,7 +174,7 @@
             0,
             0,
             0});
-            this.gotoItemIdSpinEdit.Location = new System.Drawing.Point(66, 692);
+            this.gotoItemIdSpinEdit.Location = new System.Drawing.Point(66, 718);
             this.gotoItemIdSpinEdit.Name = "gotoItemIdSpinEdit";
             this.gotoItemIdSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -180,7 +184,7 @@
             // 
             // simpleButton14
             // 
-            this.simpleButton14.Location = new System.Drawing.Point(24, 716);
+            this.simpleButton14.Location = new System.Drawing.Point(24, 742);
             this.simpleButton14.Name = "simpleButton14";
             this.simpleButton14.Size = new System.Drawing.Size(122, 22);
             this.simpleButton14.StyleController = this.Form1ConvertedLayout;
@@ -584,10 +588,11 @@
             this.layoutControlItem14,
             this.layoutControlItem16,
             this.layoutControlItem13,
-            this.layoutControlItem21});
+            this.layoutControlItem21,
+            this.layoutControlItem24});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 504);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(150, 146);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(150, 172);
             this.layoutControlGroup4.Text = "BestFit";
             // 
             // layoutControlItem14
@@ -720,16 +725,16 @@
             this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem22,
             this.layoutControlItem23});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 650);
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 676);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(150, 125);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(150, 99);
             // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.simpleButton14;
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(126, 59);
+            this.layoutControlItem22.Size = new System.Drawing.Size(126, 33);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
             // 
@@ -751,6 +756,25 @@
             this.diagramControl1.Name = "diagramControl1";
             this.diagramControl1.Size = new System.Drawing.Size(909, 795);
             this.diagramControl1.TabIndex = 32;
+            // 
+            // simpleButton15
+            // 
+            this.simpleButton15.Location = new System.Drawing.Point(24, 650);
+            this.simpleButton15.Name = "simpleButton15";
+            this.simpleButton15.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton15.StyleController = this.Form1ConvertedLayout;
+            this.simpleButton15.TabIndex = 34;
+            this.simpleButton15.Text = "Prepare For Best Fit";
+            this.simpleButton15.Click += new System.EventHandler(this.simpleButton15_Click);
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.simpleButton15;
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 104);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
             // 
             // Form1
             // 
@@ -803,6 +827,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -863,6 +888,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
+        private DevExpress.XtraEditors.SimpleButton simpleButton15;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
     }
 }
 
