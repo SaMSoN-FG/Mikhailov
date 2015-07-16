@@ -137,6 +137,7 @@
     <Content Include="Test\XMLStore\Failed\Failed_7.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_8.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_9.xml" />
+    <Content Include="Test\XMLStore\InNodeSinglePoint.xml" />
     <Content Include="Test\XMLStore\IntersectionWithTwoRelatons.xml" />
     <Content Include="Test\XMLStore\ItemsDiverge.xml">
       <SubType>Designer</SubType>
