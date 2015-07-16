@@ -212,7 +212,7 @@ namespace DiagramPoints {
                     double distance = GetDistanceBetweenPoints(item.Location, center);
                     if(distance < hullRadius) {
                         //DiagramConstant.ForceOfCenterRealtion
-                        double positionY = -((relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X) - (relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
+                        double positionY = -((p1.Y - p2.Y) * item.Location.X) / (p2.X - p1.X) - (p1.X * p2.Y - p1.Y * p2.X) / (p2.X - p1.X);
                         double forceM = DiagramConstant.PowerByCenterOfNonIntersectedPoints / distance;
                         resultX = Math.Cos(angle) * forceM;
                         resultY = Math.Sin(angle) * forceM;
