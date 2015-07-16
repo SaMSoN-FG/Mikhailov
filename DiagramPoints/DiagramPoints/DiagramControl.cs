@@ -30,7 +30,10 @@ namespace DiagramPoints {
             Invalidate();
             Update();
         }
-
+        protected override void OnSizeChanged(EventArgs e) {
+            base.OnSizeChanged(e);
+            helper.BoundingBox = new Rectangle(0,0, Width-1, Height-1);
+        }
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             int diagramID = 0;
@@ -49,6 +52,7 @@ namespace DiagramPoints {
                 e.Graphics.DrawLines(new Pen(Color.Red, 1.5f), relation1.GetPointsByOffset(globalOffset));
                 e.Graphics.DrawString("x", Font, Brushes.Orange, PointF.Add(relation1.GetCenter(), Size.Add(offset, globalOffset)));
             }
+            e.Graphics.DrawRectangle(Pens.Green, helper.BoundingBox);
         }
         Point lastPoint = Point.Empty;
         protected override void OnInvalidated(InvalidateEventArgs e) {

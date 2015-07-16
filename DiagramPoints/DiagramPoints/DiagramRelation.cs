@@ -17,8 +17,11 @@ namespace DiagramPoints {
                 return new PointF[] { PointF.Add(Item1.Location,offset), PointF.Add(Item2.Location,offset)};
         }
         public PointF GetCenter() {
-            float xCenter = Item1.Location.X + (Item2.Location.X - Item1.Location.X) / 2;
-            float YCenter = Item1.Location.Y + (Item2.Location.Y - Item1.Location.Y) / 2;
+            return GetCenter(Item1.Location, Item2.Location);
+        }
+        public static PointF GetCenter(PointF p1, PointF p2) {
+            float xCenter = p1.X + (p2.X - p1.X) / 2;
+            float YCenter = p1.Y + (p2.Y - p1.Y) / 2;
             return new PointF(xCenter, YCenter);
         }
     }

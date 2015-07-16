@@ -13,9 +13,11 @@ namespace DiagramPoints {
         public DiagramHelper() {
             DiagramItems = new List<DiagramItem>();
             DiagramRelations = new List<DiagramRelation>();
+            BoundingBox = new Rectangle(200, 200, 400, 400);
         }
         [XtraSerializableProperty(XtraSerializationVisibility.Collection, true, false, false, 1)]
         public List<DiagramItem> DiagramItems { get; set; }
+        public Rectangle BoundingBox { get; set; }
         internal object XtraCreateDiagramItemsItem(XtraItemEventArgs e) {
             DiagramItem item = new DiagramItem();
             DiagramItems.Add(item);
@@ -87,7 +89,31 @@ namespace DiagramPoints {
             CalcPowerBetweenItems();
             CalcPowerSpringPower();
             CalcPowerByCenterOfNonIntersectedPoints();
+            CalcPowerRestrictArea();
             DoOffset();
+        }
+        //int rightLimit = 400
+        private void CalcPowerRestrictArea() {
+           // foreach(var item in DiagramItems) {
+           //     double distanceToX = rightLimit - item.Location.X;
+           //     double distanceToY = rightLimit - item.Location.Y;
+           //     if(distanceToX <0) {
+           //         double forceX = 50 / distanceToX;
+           //         item.OffsetTo.Height -= (float)forceX;
+           //     }
+           //     if(distanceToY <0) {
+           //         double forceY = 50 / distanceToY;
+           //         item.OffsetTo.Width -= (float)forceY;
+           //     }  
+           //}
+            PointF p1 = new PointF(BoundingBox.X, BoundingBox.Y);
+            PointF p2 = new PointF(BoundingBox.X, BoundingBox.Bottom);
+            PointF p3 = new PointF(BoundingBox.Right, BoundingBox.Y);
+            PointF p4 = new PointF(BoundingBox.Right, BoundingBox.Bottom);
+              CalcPowerForceField(500, p1, p3, false, true);
+              CalcPowerForceField(500, p2, p1, true, true);
+              CalcPowerForceField(500, p2, p4, true, false);
+              CalcPowerForceField(500, p3, p4, true, true);
         }
 
         private Point GetNearestPointByCellSize(PointF pointF) {
@@ -157,40 +183,48 @@ namespace DiagramPoints {
                 if (distance == 0) continue;
                 double resultX = PowerOfRepel * ((item1.Location.X - item2.Location.X) / distance) * DiagramConstant.ForceOfRepelRelation;
                 double resultY = PowerOfRepel * ((item1.Location.Y - item2.Location.Y) / distance) * DiagramConstant.ForceOfRepelRelation;
-                item1.OffsetTo.Width += (float)resultX;
+                item1.OffsetTo.Width  += (float)resultX;
                 item1.OffsetTo.Height += (float)resultY;
-                item2.OffsetTo.Width -= (float)resultX;
+                item2.OffsetTo.Width  -= (float)resultX;
                 item2.OffsetTo.Height -= (float)resultY;
             }
+
+            
         }
         private void CalcPowerByCenterOfNonIntersectedPoints() {
             foreach(var relation1 in DiagramRelations) {
-                double k = -(relation1.Item1.Location.Y - relation1.Item2.Location.Y) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
-                double angle = Math.Atan(k) + Math.PI / 2;
-                double hullRadius = GetDistanceBetweenPoints(relation1.Item1.Location, relation1.Item2.Location) / 2;
-                PointF center = relation1.GetCenter();
+                CalcPowerForceField(50, relation1.Item1.Location, relation1.Item2.Location, true, true);
+            }
+        }
 
-                foreach(var item in DiagramItems) {
-                    if(item == relation1.Item1 || item == relation1.Item2) continue;
-                    double resultX = 0;
-                    double resultY = 0;
-                    double distance = GetDistanceBetweenPoints(item.Location, center);
-                    if(distance < hullRadius) {
-                        //DiagramConstant.ForceOfCenterRealtion
-                        double positionY = -((relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X) -(relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
-                        double forceM = 50 / distance;
-                        resultX = Math.Cos(angle) * forceM;
-                        resultY = Math.Sin(angle) * forceM;
-                        
-                        if(item.Location.Y < positionY) {
-                            item.OffsetTo.Height -= (float)resultY;
-                            item.OffsetTo.Width -= (float)resultX;
-                        }else{
-                            item.OffsetTo.Height += (float)resultY;
-                            item.OffsetTo.Width += (float)resultX;
-                        }
-                       
+        private void CalcPowerForceField(double forceF, PointF p1, PointF p2, bool flagUp, bool flagDown) {
+             // double k = -(relation1.Item1.Location.Y - relation1.Item2.Location.Y) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
+            double k = -(p1.Y - p2.Y) / (p2.X - p1.X);
+            double angle = Math.Atan(k) + Math.PI / 2;
+           //  double hullRadius = GetDistanceBetweenPoints(relation1.Item1.Location, relation1.Item2.Location) / 2;
+            double hullRadius = GetDistanceBetweenPoints(p1, p2) / 2;
+            PointF center = DiagramRelation.GetCenter(p1,p2);
+
+            foreach(var item in DiagramItems) {
+                if(item.Location == p1 || item.Location == p2) continue;
+                double resultX = 0;
+                double resultY = 0;
+                double distance = GetDistanceBetweenPoints(item.Location, center);
+                if(distance < hullRadius) {
+                    //DiagramConstant.ForceOfCenterRealtion
+                   //   double positionY = -((relation1.Item1.Location.Y - relation1.Item2.Location.Y) * item.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X) - (relation1.Item1.Location.X * relation1.Item2.Location.Y - relation1.Item1.Location.Y * relation1.Item2.Location.X) / (relation1.Item2.Location.X - relation1.Item1.Location.X);
+                    double positionY = -((p1.Y - p2.Y) * item.Location.X) / (p2.X - p1.X) - (p1.X * p2.Y - p1.Y * p2.X) / (p2.X - p1.X);
+                    double forceM = forceF / distance;
+                    resultX = Math.Cos(angle) * forceM;
+                    resultY = Math.Sin(angle) * forceM;
+                    if(item.Location.Y < positionY && flagUp||!flagDown) {
+                        item.OffsetTo.Height -= (float)resultY;
+                        item.OffsetTo.Width  -= (float)resultX;
+                    } else {
+                        item.OffsetTo.Height += (float)resultY;
+                        item.OffsetTo.Width  += (float)resultX;
                     }
+
                 }
             }
         }
@@ -206,7 +240,7 @@ namespace DiagramPoints {
                     resultX += ((DiagramConstant.MaxDistanceBetweenItemsForSetPower - distance) * (item1.Location.X - item2.Location.X) / distance) * DiagramConstant.ForceOfRepelBetweenItems;
                     resultY += ((DiagramConstant.MaxDistanceBetweenItemsForSetPower - distance) * (item1.Location.Y - item2.Location.Y) / distance) * DiagramConstant.ForceOfRepelBetweenItems;
                 }
-                item1.OffsetTo.Width += (float)resultX;
+                item1.OffsetTo.Width  += (float)resultX;
                 item1.OffsetTo.Height += (float)resultY;
             }
         }
