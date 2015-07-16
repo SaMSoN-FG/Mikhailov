@@ -82,6 +82,7 @@
     <Compile Include="DiagramControl.Designer.cs">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeLayout.cs" />
     <EmbeddedResource Include="DiagramControl.resx">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,13 +127,40 @@
     <Content Include="Test\XMLStore\Failed\Failed_2.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_20.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_21.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_22.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_23.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_24.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_25.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_26.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_27.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_28.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_29.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_3.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_30.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_31.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_32.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_33.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_34.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_35.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_36.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_37.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_38.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_39.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_4.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_40.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_41.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_42.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_43.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_44.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_45.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_46.xml" />
+    <Content Include="Test\XMLStore\Failed\Failed_47.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_5.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_6.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_7.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_8.xml" />
     <Content Include="Test\XMLStore\Failed\Failed_9.xml" />
+    <Content Include="Test\XMLStore\InNodeSinglePoint.xml" />
     <Content Include="Test\XMLStore\IntersectionWithTwoRelatons.xml" />
     <Content Include="Test\XMLStore\ItemsDiverge.xml">
       <SubType>Designer</SubType>

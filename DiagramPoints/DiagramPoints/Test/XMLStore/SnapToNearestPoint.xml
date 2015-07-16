@@ -1,7 +1,16 @@
 ﻿<XtraSerializer version="1.0" application="DiagramHelper">
   <property name="DiagramItems" iskey="true" value="4">
     <property name="Item1" isnull="true" iskey="true">
-      <property name="Location">@3,X=183@3,Y=175</property>
+      <property name="Location">@2,X=21@2,Y=25</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="Location">@3,X=123@2,Y=28</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="Location">@3,X=116@2,Y=79</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="Location">@2,X=23@2,Y=76</property>
     </property>
   </property>
   <property name="DiagramRelations" iskey="true" value="0" />

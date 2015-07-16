@@ -1,18 +1,20 @@
 ﻿using DevExpress.Utils.Serializing;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiagramPoints {
     public class DiagramItem {
+        public DiagramItem(DiagramHelper owner) {
+            this.Owner = owner;
+        }
+        public int EdgesCount { get { return Owner.DiagramRelations.Count(e => e.Item1 == this || e.Item2 == this); } }
         public RectangleF AreaRectangle {
             get {
                 return new RectangleF(Location.X - 5, Location.Y - 5, 10, 10);
             }
         }
+        public int Id { get { return Owner.DiagramItems.IndexOf(this); } }
         PointF locationCore;
         [XtraSerializableProperty()]
         public PointF Location { get { return locationCore; } set { locationCore = value; } }
@@ -22,5 +24,7 @@ namespace DiagramPoints {
             locationCore.Y += float.IsInfinity(OffsetTo.Height) || Math.Abs(OffsetTo.Height) < DiagramConstant.Epsilon ? 0 : OffsetTo.Height;
             OffsetTo = SizeF.Empty;
         }
+
+        public DiagramHelper Owner { get; set; }
     }
 }

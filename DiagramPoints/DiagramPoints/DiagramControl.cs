@@ -15,7 +15,7 @@ namespace DiagramPoints {
         Size offset = new Size(-4, -7);
         internal Size globalOffset = Size.Empty;
         DiagramItem dragItem;
-        Point startPoint;
+        Point startPoint = Point.Empty;
         Timer paintTimer = new Timer();
         public DiagramControl() {
             InitializeComponent();
@@ -37,10 +37,10 @@ namespace DiagramPoints {
         protected override void OnPaint(PaintEventArgs e) {
             base.OnPaint(e);
             int diagramID = 0;
-            for (int i = DisplayRectangle.X; i < DisplayRectangle.Width; i += helper.CellSize.Width)
+            for (int i = globalOffset.Width % helper.CellSize.Width; i < Width; i += helper.CellSize.Width)
                 e.Graphics.DrawLine(Pens.LightGray, new Point(i, 0), new Point(i, Height));
 
-            for (int i = DisplayRectangle.Y; i < DisplayRectangle.Height; i += helper.CellSize.Height)
+            for (int i = globalOffset.Height % helper.CellSize.Height; i < Height; i += helper.CellSize.Height)
                 e.Graphics.DrawLine(Pens.LightGray, new Point(0, i), new Point(Width, i));
 
             foreach (var item in helper.DiagramItems) {
@@ -57,7 +57,6 @@ namespace DiagramPoints {
         Point lastPoint = Point.Empty;
         protected override void OnInvalidated(InvalidateEventArgs e) {
             base.OnInvalidated(e);
-            //globalOffset = helper.GetGlobalOffset();
         }
         protected override void OnMouseDown(MouseEventArgs e) {
             base.OnMouseDown(e);

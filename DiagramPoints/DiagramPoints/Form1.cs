@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DiagramPoints{
     public partial class Form1 : XtraForm {
@@ -24,9 +25,8 @@ namespace DiagramPoints{
             helper.DoBestFit();
             
         }
-
         public void AddItem(object sender, EventArgs e) {
-            DiagramItem item = new DiagramItem();
+            DiagramItem item = new DiagramItem(helper);
             rectangleXTextEdit.Value = random.Next(10, 800);
             rectangleYTextEdit.Value = random.Next(10, 800);
             item.Location = new Point((int)rectangleXTextEdit.Value, (int)rectangleYTextEdit.Value);
@@ -111,7 +111,8 @@ namespace DiagramPoints{
 
         private void save(object sender, EventArgs e) {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.InitialDirectory = @"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore";
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\Failed");
+            dialog.InitialDirectory = di.FullName;
             dialog.Filter = "XML Files (*.xml)|*.xml";
             dialog.DefaultExt = "*.xml";
             dialog.AddExtension = true;
@@ -122,9 +123,10 @@ namespace DiagramPoints{
 
         private void load(object sender, EventArgs e) {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = @"D:\Project\DiagramPoints\DiagramPoints\Test\XMLStore";
+            DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore");
+            dialog.InitialDirectory = di.FullName;
             dialog.DefaultExt = "*.xml";
-            if (dialog.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+            if (dialog.ShowDialog(this) != DialogResult.OK) return;
             helper = new DiagramHelper();
             helper.DeserializeFromXMLFile(dialog.FileName);
             
@@ -136,8 +138,12 @@ namespace DiagramPoints{
 
         private void simpleButton14_Click(object sender, EventArgs e) {
             int id = (int)gotoItemIdSpinEdit.Value;
-            if (id >= 0)
+            if (id >= 0 && id < helper.DiagramItems.Count)
                 diagramControl1.globalOffset = new Size((-(int)helper.DiagramItems[id].Location.X) + diagramControl1.Width / 2, (-(int)helper.DiagramItems[id].Location.Y) + diagramControl1.Height / 2);   
+        }
+
+        private void simpleButton15_Click(object sender, EventArgs e) {
+            helper.PrepareForBestFit(diagramControl1.Size);
         }
     }
 }
