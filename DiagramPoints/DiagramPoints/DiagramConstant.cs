@@ -13,7 +13,7 @@ namespace DiagramPoints{
         public const double ForceOfRepelRelation = 0.2;
         public const double PowerByCenterOfNonIntersectedPoints = 50;
 
-        public const double MaxDistanceBetweenItemsForSetPower = 200;
+        public const double MaxDistanceBetweenItemsForSetPower = 100;
         public const double BestLengthOfRepelRelation = 25;
     }
   public enum PointLocation {

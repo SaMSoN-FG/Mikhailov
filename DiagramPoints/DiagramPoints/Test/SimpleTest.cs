@@ -136,7 +136,7 @@ namespace DiagramPoints.Test {
            foreach (string file in files) {
                helper = new DiagramHelper();
                helper.DeserializeFromXMLFile(file);
-               for (int i = 0; i < 1000; i++)
+               for (int i = 0; i < 2000; i++)
                    helper.DoBestFit();
                PointF[] initialLocations = new PointF[helper.DiagramItems.Count];
                int j = 0;
@@ -147,7 +147,8 @@ namespace DiagramPoints.Test {
                helper.DoBestFit();
                j = 0;
                foreach (var item in helper.DiagramItems) {
-                   Assert.AreEqual(initialLocations[j], item.Location, file);
+                   Assert.AreEqual(Math.Round(initialLocations[j].X, 0), Math.Round(item.Location.X, 0), file);
+                   Assert.AreEqual(Math.Round(initialLocations[j].Y, 0), Math.Round(item.Location.Y, 0), file);
                    j++;
                }
            }
