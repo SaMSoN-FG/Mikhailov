@@ -40,7 +40,14 @@ namespace DiagramPoints {
         public void DepthFirstSearch(DiagramItem item) {
             used[item.Id] = true;
             list.Add(item);
-            var edgesList = edges.Where(x => x.Item1 == item);
+            var edgesList = edges.Where(x => (x.Item1 == item && x.Item2 != item) || x.Item2 == item);
+            foreach (var e in edgesList) {
+                if (e.Item1 != item) {
+                    var temp = e.Item2;
+                    e.Item2 = e.Item1;
+                    e.Item1 = temp;
+                }
+            }
             foreach (var edge in edgesList) {
                 if (!used[edge.Item2.Id]) {
                     DepthFirstSearch(edge.Item2);
