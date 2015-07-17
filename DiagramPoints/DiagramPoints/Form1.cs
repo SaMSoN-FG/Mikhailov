@@ -131,13 +131,17 @@ namespace DiagramPoints{
         private void generateGraph(object sender, EventArgs e) {
             clear(null, null);
             GraphItem graphItem = new GraphItem(helper);
-            graphItem.CreateRandom(1,2);
+            graphItem.CreateRandom(5,6);
             helper.AddGraphItem(graphItem);
         }
 
         private void simpleButton10_Click(object sender, EventArgs e) {
             if(helper.DiagramItems[0] is GraphItem) {
-                (helper.DiagramItems[0] as GraphItem).DoBestFit(new Point(10,10));
+                foreach(var item in helper.DiagramItems) {
+                    item.Location = Point.Empty;
+                }
+                int X = 25;
+                (helper.DiagramItems[0] as GraphItem).DoBestFit(ref X, -25);
             }
         }
     }

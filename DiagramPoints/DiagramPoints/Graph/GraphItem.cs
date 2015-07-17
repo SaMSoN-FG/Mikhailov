@@ -24,22 +24,21 @@ namespace DiagramPoints {
                 ChildItems.Add(item);
             }
         }
-
-        internal Point DoBestFit(Point startLocation) {
-            if(ChildItems.Count > 0) {
-                Point coreLocation = startLocation;
-                coreLocation.Y += heightNode;
+        int grapWidth { get { return ChildItems.Count > 0 ? ChildItems.Sum(e => e.grapWidth) : DiagramConstant.GraphWidth; } }
+        internal void DoBestFit(ref int X, int Y) {
+            Y += DiagramConstant.GraphHeight;
+            if(ChildItems.Count != 0) {
                 foreach(var item in ChildItems) {
-                    int offsetX = item.DoBestFit(coreLocation).X;
-                    coreLocation.X += offsetX;
+                    item.DoBestFit(ref X,Y);
+                    X += (item.grapWidth > DiagramConstant.GraphWidth) ? item.grapWidth / 2 : item.grapWidth;
                 }
-                Location = coreLocation;
-                return coreLocation;
+                int maxXFromChild = (int)ChildItems.Max(e => e.Location.X);
+                int minXFromChild = (int)ChildItems.Min(e => e.Location.X);
+                X = (maxXFromChild == minXFromChild ? maxXFromChild : (maxXFromChild - minXFromChild) / 2 + minXFromChild);
+                Location = new PointF(X, Y);
             } else {
-                Location = startLocation;
-                return startLocation;
+                Location = new PointF(X, Y);
             }
         }
-        int heightNode = 25;
     }
 }
