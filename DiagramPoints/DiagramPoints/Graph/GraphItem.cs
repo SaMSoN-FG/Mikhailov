@@ -9,13 +9,13 @@ namespace DiagramPoints {
     public  class GraphItem : DiagramItem {
         public GraphItem(DiagramHelper owner) : base(owner) {
             ChildItems = new List<GraphItem>();
+            Size = new Size(DiagramConstant.Random.Next(10, 100), DiagramConstant.Random.Next(10, 100));
         }
         public List<GraphItem> ChildItems { get; set; }
         //todo removerandom
         internal void CreateRandom(int maxNestedCount,int maxChildCount) {
             int maxNestedCountCore = maxNestedCount;
-            Random rand = new Random();
-            for(int i = 0; i < rand.Next(1,maxChildCount); i++) {
+            for(int i = 0; i <DiagramConstant.Random.Next(1,maxChildCount); i++) {
                 GraphItem item = new GraphItem(Owner);
                 if(maxNestedCountCore > 0) {
                     maxNestedCountCore--;
@@ -24,18 +24,27 @@ namespace DiagramPoints {
                 ChildItems.Add(item);
             }
         }
-        int grapWidth { get { return ChildItems.Count > 0 ? ChildItems.Sum(e => e.grapWidth) : DiagramConstant.GraphWidth; } }
+        int grapWidth {
+            get {
+                if(ChildItems.Count == 0) return Size.Width / 2 + DiagramConstant.GraphWidth / 2;
+                return ChildItems.Sum(e => e.grapWidth);
+            }
+        }
         internal void DoBestFit(ref int X, int Y) {
-            Y += DiagramConstant.GraphHeight;
             if(ChildItems.Count != 0) {
                 foreach(var item in ChildItems) {
-                    item.DoBestFit(ref X,Y);
-                    X += (item.grapWidth > DiagramConstant.GraphWidth) ? item.grapWidth / 2 : item.grapWidth;
+                    X += item.Size.Width / 2 + DiagramConstant.GraphWidth;
+                    int yForChild = Y + (ChildItems.Max(e => e.Size.Height) + Size.Height) / 2 + DiagramConstant.GraphHeight;
+                    item.DoBestFit(ref X, yForChild);
+                    X += item.grapWidth;
                 }
-                int maxXFromChild = (int)ChildItems.Max(e => e.Location.X);
-                int minXFromChild = (int)ChildItems.Min(e => e.Location.X);
-                X = (maxXFromChild == minXFromChild ? maxXFromChild : (maxXFromChild - minXFromChild) / 2 + minXFromChild);
+                int maxXFromChild = (int)ChildItems.Max(e => e.Bounds.Right);
+                int minXFromChild = (int)ChildItems.Min(e => e.Bounds.Left);
+                int dif = (maxXFromChild - minXFromChild) / 2;
+                dif = (dif > Size.Width / 2 ? dif : Size.Width / 2);
+                X = minXFromChild + dif;
                 Location = new PointF(X, Y);
+                X += DiagramConstant.GraphWidth;
             } else {
                 Location = new PointF(X, Y);
             }

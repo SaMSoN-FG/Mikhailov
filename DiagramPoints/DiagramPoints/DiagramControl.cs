@@ -47,6 +47,9 @@ namespace DiagramPoints {
                 e.Graphics.DrawLine(Pens.LightGray, new Point(0, i), new Point(Width, i));
 
             foreach (var item in helper.DiagramItems) {
+                Rectangle rectToDraw = item.Bounds;
+                rectToDraw.Offset(globalOffset.Width,globalOffset.Height);
+                e.Graphics.DrawRectangle(Pens.Blue, rectToDraw);
                 e.Graphics.DrawString("o", Font, Brushes.Blue, PointF.Add(item.Location, Size.Add(offset, globalOffset)));
                 e.Graphics.DrawString(diagramID.ToString(), new Font(Font.FontFamily, 6.5f), Brushes.Black, PointF.Add(item.Location, Size.Add(new Size(2, -8), globalOffset)));
                 diagramID++;

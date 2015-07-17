@@ -13,7 +13,6 @@ using System.IO;
 namespace DiagramPoints{
     public partial class Form1 : XtraForm {
         public DiagramHelper helper { get { return diagramControl1.helper; } set { diagramControl1.helper = value; } }
-        Random random = new Random();
         Timer timer = new Timer();
         
         public Form1() {
@@ -27,8 +26,8 @@ namespace DiagramPoints{
         }
         public void AddItem(object sender, EventArgs e) {
             DiagramItem item = new DiagramItem(helper);
-            rectangleXTextEdit.Value = random.Next(10, 800);
-            rectangleYTextEdit.Value = random.Next(10, 800);
+            rectangleXTextEdit.Value = DiagramConstant.Random.Next(10, 800);
+            rectangleYTextEdit.Value = DiagramConstant.Random.Next(10, 800);
             item.Location = new Point((int)rectangleXTextEdit.Value, (int)rectangleYTextEdit.Value);
             helper.DiagramItems.Add(item);
         }
@@ -56,10 +55,10 @@ namespace DiagramPoints{
 
         public void makeRandomRelation(object sender, EventArgs e) {
             if (helper.DiagramItems.Count < 2) return;
-           int first = random.Next(0, helper.DiagramItems.Count);
-           int second = random.Next(0, helper.DiagramItems.Count);
+           int first = DiagramConstant.Random.Next(0, helper.DiagramItems.Count);
+           int second = DiagramConstant.Random.Next(0, helper.DiagramItems.Count);
            while (first == second) {
-               second = random.Next(0, helper.DiagramItems.Count);
+               second = DiagramConstant.Random.Next(0, helper.DiagramItems.Count);
            }
            DiagramRelation relation = new DiagramRelation();
            relation.Item1 = helper.DiagramItems[first];
@@ -136,12 +135,12 @@ namespace DiagramPoints{
         }
 
         private void simpleButton10_Click(object sender, EventArgs e) {
-            if(helper.DiagramItems[0] is GraphItem) {
+            if(helper.DiagramItems.Count != 0 && helper.DiagramItems[0] is GraphItem) {
                 foreach(var item in helper.DiagramItems) {
                     item.Location = Point.Empty;
                 }
-                int X = 25;
-                (helper.DiagramItems[0] as GraphItem).DoBestFit(ref X, -25);
+                int X = (helper.DiagramItems[0] as GraphItem).Size.Width;
+                (helper.DiagramItems[0] as GraphItem).DoBestFit(ref X, (helper.DiagramItems[0] as GraphItem).Size.Height + 10);
             }
         }
     }

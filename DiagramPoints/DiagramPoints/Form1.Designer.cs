@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.Form1ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
+            this.simpleButton10 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton15 = new DevExpress.XtraEditors.SimpleButton();
             this.gotoItemIdSpinEdit = new DevExpress.XtraEditors.SpinEdit();
@@ -71,9 +72,8 @@
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.diagramControl1 = new DiagramPoints.DiagramControl();
-            this.simpleButton10 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.diagramControl1 = new DiagramPoints.DiagramControl();
             ((System.ComponentModel.ISupportInitialize)(this.Form1ConvertedLayout)).BeginInit();
             this.Form1ConvertedLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gotoItemIdSpinEdit.Properties)).BeginInit();
@@ -153,6 +153,16 @@
             this.Form1ConvertedLayout.Root = this.layoutControlGroup1;
             this.Form1ConvertedLayout.Size = new System.Drawing.Size(167, 830);
             this.Form1ConvertedLayout.TabIndex = 29;
+            // 
+            // simpleButton10
+            // 
+            this.simpleButton10.Location = new System.Drawing.Point(24, 760);
+            this.simpleButton10.Name = "simpleButton10";
+            this.simpleButton10.Size = new System.Drawing.Size(119, 22);
+            this.simpleButton10.StyleController = this.Form1ConvertedLayout;
+            this.simpleButton10.TabIndex = 36;
+            this.simpleButton10.Text = "BestFitGraph";
+            this.simpleButton10.Click += new System.EventHandler(this.simpleButton10_Click);
             // 
             // simpleButton9
             // 
@@ -666,6 +676,15 @@
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.simpleButton10;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(123, 50);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
             // diagramControl1
             // 
             this.diagramControl1.AutoScroll = true;
@@ -675,25 +694,6 @@
             this.diagramControl1.Name = "diagramControl1";
             this.diagramControl1.Size = new System.Drawing.Size(980, 830);
             this.diagramControl1.TabIndex = 32;
-            // 
-            // simpleButton10
-            // 
-            this.simpleButton10.Location = new System.Drawing.Point(24, 760);
-            this.simpleButton10.Name = "simpleButton10";
-            this.simpleButton10.Size = new System.Drawing.Size(119, 22);
-            this.simpleButton10.StyleController = this.Form1ConvertedLayout;
-            this.simpleButton10.TabIndex = 36;
-            this.simpleButton10.Text = "BestFitGraph";
-            this.simpleButton10.Click += new System.EventHandler(this.simpleButton10_Click);
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.simpleButton10;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(123, 50);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
             // 
             // Form1
             // 
