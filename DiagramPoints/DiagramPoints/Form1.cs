@@ -91,24 +91,6 @@ namespace DiagramPoints{
             }
         }
 
-        private void moveX(object sender, EventArgs e) {
-            foreach (var item in helper.DiagramItems) {
-                item.OffsetTo = Size.Empty;
-                item.OffsetTo.Width = (float)moveXValueSpinEdit.Value;
-                item.DoOffset();
-            }
-            
-        }
-
-        private void moveY(object sender, EventArgs e) {
-            foreach (var item in helper.DiagramItems) {
-                item.OffsetTo = Size.Empty;
-                item.OffsetTo.Height = (float)moveYValueSpinEdit.Value;
-                item.DoOffset();
-            }
-            
-        }
-
         private void save(object sender, EventArgs e) {
             SaveFileDialog dialog = new SaveFileDialog();
             DirectoryInfo di = new DirectoryInfo(Directory.GetCurrentDirectory() + @"\..\..\Test\XMLStore\Failed");
@@ -136,14 +118,27 @@ namespace DiagramPoints{
             helper.DoArrange();
         }
 
-        private void simpleButton14_Click(object sender, EventArgs e) {
+        private void goToItemID_Click(object sender, EventArgs e) {
             int id = (int)gotoItemIdSpinEdit.Value;
             if (id >= 0 && id < helper.DiagramItems.Count)
                 diagramControl1.globalOffset = new Size((-(int)helper.DiagramItems[id].Location.X) + diagramControl1.Width / 2, (-(int)helper.DiagramItems[id].Location.Y) + diagramControl1.Height / 2);   
         }
 
-        private void simpleButton15_Click(object sender, EventArgs e) {
+        private void prepareForBestFit_Click(object sender, EventArgs e) {
             helper.PrepareForBestFit(diagramControl1.Size);
+        }
+
+        private void generateGraph(object sender, EventArgs e) {
+            clear(null, null);
+            GraphItem graphItem = new GraphItem(helper);
+            graphItem.CreateRandom(1,2);
+            helper.AddGraphItem(graphItem);
+        }
+
+        private void simpleButton10_Click(object sender, EventArgs e) {
+            if(helper.DiagramItems[0] is GraphItem) {
+                (helper.DiagramItems[0] as GraphItem).DoBestFit(new Point(10,10));
+            }
         }
     }
 }
