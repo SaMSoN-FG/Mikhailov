@@ -19,12 +19,15 @@ namespace DiagramPoints {
         Timer paintTimer = new Timer();
         public DiagramControl() {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.DoubleBuffered = true;
             AutoScroll = true;
             paintTimer.Interval = 100;
             paintTimer.Start();
             paintTimer.Tick += paintTimer_Tick;
+        }
+        protected override void OnCreateControl() {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            base.OnCreateControl();
         }
         void paintTimer_Tick(object sender, EventArgs e) {
             Invalidate();
