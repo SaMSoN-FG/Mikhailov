@@ -294,6 +294,12 @@ namespace DiagramPoints {
                 AddGraphItem(item);
             }
         }
+
+        public void Load(string textProgram) {
+            Parse.ParseDot parseDot = new Parse.ParseDot(this, textProgram);
+            DiagramItems = parseDot.GetDiagramItems();
+            DiagramRelations = parseDot.GetDiagramRelations();
+        }
     }
 }
 

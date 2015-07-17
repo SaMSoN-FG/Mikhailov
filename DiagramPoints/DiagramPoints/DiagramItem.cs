@@ -35,5 +35,6 @@ namespace DiagramPoints {
         }
 
         public DiagramHelper Owner { get; set; }
+        public string Name { get; set; }
     }
 }
