@@ -287,6 +287,14 @@ namespace DiagramPoints {
                 beginY += graph.Vertices.Count * globalY;
             }
         }
+
+        internal void AddGraphItem(GraphItem graphItem) {
+            DiagramItems.Add(graphItem);
+            foreach(var item in graphItem.ChildItems) {
+                DiagramRelations.Add(new DiagramRelation() { Item1 = graphItem, Item2 = item });
+                AddGraphItem(item);
+            }
+        }
     }
 }
 
