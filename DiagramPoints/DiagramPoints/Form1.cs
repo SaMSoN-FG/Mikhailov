@@ -130,7 +130,7 @@ namespace DiagramPoints{
         private void generateGraph(object sender, EventArgs e) {
             clear(null, null);
             GraphItem graphItem = new GraphItem(helper);
-            graphItem.CreateRandom(4,15);
+            graphItem.CreateRandom(10,4);
             helper.AddGraphItem(graphItem);
         }
 
@@ -141,6 +141,12 @@ namespace DiagramPoints{
                 }
                 int X = (helper.DiagramItems[0] as GraphItem).Size.Width;
                 (helper.DiagramItems[0] as GraphItem).DoBestFit(ref X, (helper.DiagramItems[0] as GraphItem).Size.Height + 10);
+            }
+        }
+
+        private void simpleButton16_Click(object sender, EventArgs e) {
+            foreach(var item in helper.DiagramItems) {
+                item.Location = new PointF(item.Location.Y, item.Location.X);
             }
         }
     }

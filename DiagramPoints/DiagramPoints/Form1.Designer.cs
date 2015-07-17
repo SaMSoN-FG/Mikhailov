@@ -73,6 +73,8 @@
             this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleButton16 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.diagramControl1 = new DiagramPoints.DiagramControl();
             ((System.ComponentModel.ISupportInitialize)(this.Form1ConvertedLayout)).BeginInit();
             this.Form1ConvertedLayout.SuspendLayout();
@@ -110,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // simpleButton1
@@ -125,6 +128,7 @@
             // 
             // Form1ConvertedLayout
             // 
+            this.Form1ConvertedLayout.Controls.Add(this.simpleButton16);
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton10);
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton9);
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton15);
@@ -147,11 +151,11 @@
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton2);
             this.Form1ConvertedLayout.Controls.Add(this.simpleButton1);
             this.Form1ConvertedLayout.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Form1ConvertedLayout.Location = new System.Drawing.Point(980, 0);
+            this.Form1ConvertedLayout.Location = new System.Drawing.Point(995, 0);
             this.Form1ConvertedLayout.Name = "Form1ConvertedLayout";
             this.Form1ConvertedLayout.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(980, 152, 643, 584);
             this.Form1ConvertedLayout.Root = this.layoutControlGroup1;
-            this.Form1ConvertedLayout.Size = new System.Drawing.Size(167, 830);
+            this.Form1ConvertedLayout.Size = new System.Drawing.Size(167, 832);
             this.Form1ConvertedLayout.TabIndex = 29;
             // 
             // simpleButton10
@@ -413,7 +417,7 @@
             this.layoutControlGroup7});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(167, 830);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(167, 832);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -661,10 +665,11 @@
             this.layoutControlGroup7.ExpandButtonVisible = true;
             this.layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem7,
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.layoutControlItem8});
             this.layoutControlGroup7.Location = new System.Drawing.Point(0, 692);
             this.layoutControlGroup7.Name = "layoutControlGroup7";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(147, 118);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(147, 120);
             this.layoutControlGroup7.Text = "Graph Actions";
             // 
             // layoutControlItem7
@@ -681,9 +686,28 @@
             this.layoutControlItem1.Control = this.simpleButton10;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(123, 50);
+            this.layoutControlItem1.Size = new System.Drawing.Size(123, 26);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // simpleButton16
+            // 
+            this.simpleButton16.Location = new System.Drawing.Point(24, 786);
+            this.simpleButton16.Name = "simpleButton16";
+            this.simpleButton16.Size = new System.Drawing.Size(119, 22);
+            this.simpleButton16.StyleController = this.Form1ConvertedLayout;
+            this.simpleButton16.TabIndex = 37;
+            this.simpleButton16.Text = "Rotate";
+            this.simpleButton16.Click += new System.EventHandler(this.simpleButton16_Click);
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.simpleButton16;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 52);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(123, 26);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // diagramControl1
             // 
@@ -692,7 +716,7 @@
             this.diagramControl1.EnableIXtraResizeableControlInterfaceProxy = false;
             this.diagramControl1.Location = new System.Drawing.Point(0, 0);
             this.diagramControl1.Name = "diagramControl1";
-            this.diagramControl1.Size = new System.Drawing.Size(980, 830);
+            this.diagramControl1.Size = new System.Drawing.Size(995, 832);
             this.diagramControl1.TabIndex = 32;
             // 
             // Form1
@@ -701,7 +725,7 @@
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 830);
+            this.ClientSize = new System.Drawing.Size(1162, 832);
             this.Controls.Add(this.diagramControl1);
             this.Controls.Add(this.Form1ConvertedLayout);
             this.Name = "Form1";
@@ -742,6 +766,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -799,6 +824,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraEditors.SimpleButton simpleButton10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton16;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }
 
