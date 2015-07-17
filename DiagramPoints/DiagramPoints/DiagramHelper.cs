@@ -85,7 +85,7 @@ namespace DiagramPoints {
         }
         internal void DoBestFit() {
             int watchDog = 5;
-            while(CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
+           while(CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
             CalcPowerBetweenItems();
             CalcPowerSpringPower();
             CalcPowerByCenterOfNonIntersectedPoints();
@@ -110,10 +110,11 @@ namespace DiagramPoints {
             PointF p2 = new PointF(BoundingBox.X, BoundingBox.Bottom);
             PointF p3 = new PointF(BoundingBox.Right, BoundingBox.Y);
             PointF p4 = new PointF(BoundingBox.Right, BoundingBox.Bottom);
-              CalcPowerForceField(500, p1, p3, false, true);
-              CalcPowerForceField(500, p2, p1, true, true);
-              CalcPowerForceField(500, p2, p4, true, false);
-              CalcPowerForceField(500, p3, p4, true, true);
+            double forceField = 685;
+            CalcPowerForceField(forceField, p1, p3, false, true);
+            CalcPowerForceField(forceField, p2, p1, true, true);
+            CalcPowerForceField(forceField, p2, p4, true, false);
+            CalcPowerForceField(forceField, p3, p4, true, true);
         }
 
         private Point GetNearestPointByCellSize(PointF pointF) {
@@ -213,7 +214,7 @@ namespace DiagramPoints {
                     if(distance < hullRadius) {
                         //DiagramConstant.ForceOfCenterRealtion
                         double positionY = -((p1.Y - p2.Y) * item.Location.X) / (p2.X - p1.X) - (p1.X * p2.Y - p1.Y * p2.X) / (p2.X - p1.X);
-                        double forceM = DiagramConstant.PowerByCenterOfNonIntersectedPoints / distance;
+                        double forceM = forceF / distance;
                         resultX = Math.Cos(angle) * forceM;
                         resultY = Math.Sin(angle) * forceM;
                     if(item.Location.Y < positionY && flagUp||!flagDown) {
