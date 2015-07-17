@@ -130,7 +130,7 @@ namespace DiagramPoints{
         private void generateGraph(object sender, EventArgs e) {
             clear(null, null);
             GraphItem graphItem = new GraphItem(helper);
-            graphItem.CreateRandom(5,6);
+            graphItem.CreateRandom(4,15);
             helper.AddGraphItem(graphItem);
         }
 
