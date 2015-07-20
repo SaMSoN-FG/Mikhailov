@@ -23,7 +23,7 @@ namespace DiagramPoints {
             AutoScroll = true;
             paintTimer.Interval = 100;
             paintTimer.Start();
-            paintTimer.Tick += paintTimer_Tick;
+          //  paintTimer.Tick += paintTimer_Tick;
         }
         protected override void OnCreateControl() {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);

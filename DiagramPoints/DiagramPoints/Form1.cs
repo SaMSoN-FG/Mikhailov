@@ -19,6 +19,9 @@ namespace DiagramPoints{
             InitializeComponent();
             timer.Interval = 1;
             timer.Tick += timer_Tick;
+
+            helper.Load(Parse.Test.SimpleParseTest.GetTextProgramEx());
+
         }
         void timer_Tick(object sender, EventArgs e) {
             helper.DoBestFit();
