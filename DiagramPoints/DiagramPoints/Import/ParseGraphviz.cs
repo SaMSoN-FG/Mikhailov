@@ -1,14 +1,26 @@
 ﻿using DiagramPoints;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Parse {
     public enum TypeGraph { Graph, None };
 
+    public class DiagramItemFactory {
+        Hashtable ht = new Hashtable();
+        public DiagramItem Create(DiagramHelper owner, string id) {
+            if(ht.ContainsKey(id)) return (DiagramItem)ht[id];
+            else {
+                var result = new DiagramItem(owner) { Name = id };
+                ht.Add(id, result);
+                return result;
+            }
+        }
+    }
     public class ParseDot {
         string textProgram;
         TypeGraph typeGraph;
-
+        DiagramItemFactory factory = new DiagramItemFactory();
         List<DiagramItem> diagramItemsFull;
         List<DiagramRelation> diagramRelationsFull;
         DiagramHelper owner;
@@ -115,8 +127,8 @@ namespace Parse {
 
         DiagramRelation CreateDiagramRelation(string[] DiagramItemsData) {
             DiagramRelation DiagramRelation = new DiagramRelation();
-            DiagramRelation.Item1 = new DiagramItem(owner) { Name = GetDiagramItemName(DiagramItemsData[0]) };
-            DiagramRelation.Item2 = new DiagramItem(owner) { Name = GetDiagramItemName(DiagramItemsData[1]) };
+            DiagramRelation.Item1 = factory.Create(owner, GetDiagramItemName(DiagramItemsData[0]));
+            DiagramRelation.Item2 = factory.Create(owner, GetDiagramItemName(DiagramItemsData[1]));
             return DiagramRelation;
         }
 

@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.Serializing;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
@@ -25,7 +26,7 @@ namespace DiagramPoints {
         PointF locationCore;
         [XtraSerializableProperty()]
         public PointF Location { get { return locationCore; } set { locationCore = value; } }
-        internal  Size Size { get; set; }
+        internal Size Size { get; set; }
         public Rectangle Bounds {
             get { return new Rectangle((int)locationCore.X - Size.Width / 2, (int)locationCore.Y - Size.Height / 2, Size.Width, Size.Height); }
             set {
@@ -33,11 +34,16 @@ namespace DiagramPoints {
                 locationCore = new PointF(value.Right / 2, value.Bottom / 2);
             }
         }
-        internal SizeF OffsetTo = SizeF.Empty;
+        public DiagramItemOffset OffsetTo = new DiagramItemOffset();
+        //internal SizeF OffsetTo = SizeF.Empty;
         internal void DoOffset() {
-            locationCore.X += float.IsInfinity(OffsetTo.Width) || Math.Abs(OffsetTo.Width) < DiagramConstant.Epsilon ? 0 : OffsetTo.Width;
-            locationCore.Y += float.IsInfinity(OffsetTo.Height) || Math.Abs(OffsetTo.Height) < DiagramConstant.Epsilon ? 0 : OffsetTo.Height;
-            OffsetTo = SizeF.Empty;
+            //locationCore.X += float.IsInfinity(OffsetTo.Width) || Math.Abs(OffsetTo.Width) < DiagramConstant.Epsilon ? 0 : OffsetTo.Width;
+            //locationCore.Y += float.IsInfinity(OffsetTo.Height) || Math.Abs(OffsetTo.Height) < DiagramConstant.Epsilon ? 0 : OffsetTo.Height;
+
+
+            locationCore = OffsetTo.GetSumOffset(locationCore);
+            //OffsetTo = SizeF.Empty;
+            OffsetTo.Clear();
         }
 
         public DiagramHelper Owner { get; set; }
@@ -45,6 +51,20 @@ namespace DiagramPoints {
         internal PointF[] GetAreaPoints() {
             PointF[] points = new PointF[] { new PointF(locationCore.X - Size.Width / 2, locationCore.Y), new PointF(locationCore.X, locationCore.Y - Size.Height / 2), new PointF(locationCore.X + Size.Width / 2, locationCore.Y), new PointF(locationCore.X, locationCore.Y + Size.Height / 2) };
             return points;
+        }
+    }
+    public class DiagramItemOffset {
+        List<SizeF> offsetCore = new List<SizeF>();
+        public void AddOffset(float dx, float dy) { offsetCore.Add(new SizeF(dx, dy)); }
+        public PointF GetSumOffset(PointF location) {
+            PointF result = location;
+            foreach(SizeF size in offsetCore) result = new PointF(result.X + size.Width, result.Y + size.Height);
+            if(result.X < 0) result.X = 0;
+            if(result.Y < 0) result.Y = 0;
+            return result;
+        }
+        public void Clear() {
+            offsetCore.Clear();
         }
     }
 }

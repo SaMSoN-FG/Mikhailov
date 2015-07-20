@@ -54,7 +54,7 @@ namespace DiagramPoints {
             serializer.DeserializeObject(this, fileName, this.GetType().Name);
         }
         internal static double GetDistanceBetweenPoints(PointF firstPoint, PointF secondPoint) {
-            return Math.Sqrt(Math.Pow(firstPoint.X - secondPoint.X, 2) + Math.Pow(firstPoint.Y - secondPoint.Y, 2));
+            return Math.Sqrt(Math.Pow(firstPoint.X - secondPoint.X, 2) + Math.Pow(firstPoint.Y - secondPoint.Y, 2)) + 1;
         }
         internal DiagramItem CalcHitInfo(Point location) {
             foreach(var item in DiagramItems) {
@@ -72,8 +72,11 @@ namespace DiagramPoints {
                 //}
                 //if (nearestPointIsNotFree)
                 //    nearestPoint = GetNearestPointByCellSize(new PointF((nearestPoint.X <= item.Location.X ? nearestPoint.X + CellSize.Width : nearestPoint.X - CellSize.Width), nearestPoint.Y));
-                item.OffsetTo.Width = nearestPoint.X - item.Location.X;
-                item.OffsetTo.Height = nearestPoint.Y - item.Location.Y;
+
+                //item.OffsetTo.Width = nearestPoint.X - item.Location.X;
+                //item.OffsetTo.Height = nearestPoint.Y - item.Location.Y;
+
+                item.OffsetTo.AddOffset(nearestPoint.X - item.Location.X, nearestPoint.Y - item.Location.Y);
             }
             DoOffset();
         }
@@ -84,8 +87,8 @@ namespace DiagramPoints {
             return new Size((int)maxX, (int)maxY);
         }
         internal void DoBestFit() {
-           // int watchDog = 5;
-           //while(CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
+            int watchDog = 5;
+         //  while(CalcPowerByCenterOfPoints() && watchDog-- > 0) { DoOffset(); }
             CalcPowerBetweenItems();
             CalcPowerSpringPower();
             CalcPowerByCenterOfNonIntersectedPoints();
@@ -130,13 +133,15 @@ namespace DiagramPoints {
             foreach(var item in DiagramItems) {
                 item.DoOffset();
             }
-            float minX = DiagramItems.Select(e => e.Location.X).Min();
-            float minY = DiagramItems.Select(e => e.Location.Y).Min();
-            foreach(var item in DiagramItems) {
-                if(minX < 0) item.OffsetTo.Width = -minX;
-                if(minY < 0) item.OffsetTo.Height = -minY;
-                item.DoOffset();
-            }
+            //float minX = DiagramItems.Select(e => e.Location.X).Min();
+            //float minY = DiagramItems.Select(e => e.Location.Y).Min();
+            //foreach(var item in DiagramItems) {
+            //   // if(minX < 0) item.OffsetTo.Width = -minX;
+            //    if(minX < 0) item.OffsetTo.AddOffset(-(float) minX , 0);
+            //   // if(minY < 0) item.OffsetTo.Height = -minY;
+            //    if(minY < 0) item.OffsetTo.AddOffset(0, -(float)minY);
+            //    item.DoOffset();
+            //}
         }
         private bool CalcPowerByCenterOfPoints() {
             bool result = false;
@@ -150,19 +155,23 @@ namespace DiagramPoints {
                     PointF relationCountPoint = GetPointByCountOfRelation(relation1);
                     resultX = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.X + intersect.X) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
                     resultY = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.Y + intersect.Y) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
-                    relation2.Item1.OffsetTo.Width += (float)resultX;
-                    relation2.Item2.OffsetTo.Width += (float)resultX;
-                    relation2.Item1.OffsetTo.Height += (float)resultY;
-                    relation2.Item2.OffsetTo.Height += (float)resultY;
+                   // relation2.Item1.OffsetTo.Width += (float)resultX;
+                   // relation2.Item2.OffsetTo.Width += (float)resultX;
+                   // relation2.Item1.OffsetTo.Height += (float)resultY;
+                   // relation2.Item2.OffsetTo.Height += (float)resultY;
+                    relation2.Item1.OffsetTo.AddOffset((float)resultX, (float)resultY);
+                    relation2.Item2.OffsetTo.AddOffset((float)resultX, (float)resultY);
                     result = true;
                     //relation 2
                     relationCountPoint = GetPointByCountOfRelation(relation2);
                     resultX = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.X + intersect.X) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
                     resultY = DiagramConstant.ForceOfCenterRealtion * (-relationCountPoint.Y + intersect.Y) / (GetDistanceBetweenPoints(intersect, relationCountPoint));
-                    relation1.Item1.OffsetTo.Width -= (float)resultX;
-                    relation1.Item2.OffsetTo.Width -= (float)resultX;
-                    relation1.Item1.OffsetTo.Height -= (float)resultY;
-                    relation1.Item2.OffsetTo.Height -= (float)resultY;
+                    //relation1.Item1.OffsetTo.Width -= (float)resultX;
+                    //relation1.Item2.OffsetTo.Width -= (float)resultX;
+                    //relation1.Item1.OffsetTo.Height -= (float)resultY;
+                    //relation1.Item2.OffsetTo.Height -= (float)resultY;
+                    relation1.Item1.OffsetTo.AddOffset((float)-resultX, (float)-resultY);
+                    relation1.Item2.OffsetTo.AddOffset((float)-resultX, (float)-resultY);
                 }
 
             }
@@ -181,13 +190,15 @@ namespace DiagramPoints {
                 var item2 = relation.Item2;
                 double distance = GetDistanceBetweenPoints(item1.Location, item2.Location);
                 double PowerOfRepel = DiagramConstant.BestLengthOfRepelRelation - distance;
-                if(distance == 0) continue;
+                if(distance <= 1) distance = 1;
                 double resultX = PowerOfRepel * ((item1.Location.X - item2.Location.X) / distance) * DiagramConstant.ForceOfRepelRelation;
                 double resultY = PowerOfRepel * ((item1.Location.Y - item2.Location.Y) / distance) * DiagramConstant.ForceOfRepelRelation;
-                item1.OffsetTo.Width  += (float)resultX;
-                item1.OffsetTo.Height += (float)resultY;
-                item2.OffsetTo.Width  -= (float)resultX;
-                item2.OffsetTo.Height -= (float)resultY;
+               // item1.OffsetTo.Width  += (float)resultX;
+               // item1.OffsetTo.Height += (float)resultY;
+               // item2.OffsetTo.Width  -= (float)resultX;
+               // item2.OffsetTo.Height -= (float)resultY;
+                item1.OffsetTo.AddOffset((float)resultX, (float)resultY);
+                item2.OffsetTo.AddOffset((float)-resultX, (float)-resultY);
             }
 
             
@@ -218,11 +229,14 @@ namespace DiagramPoints {
                         resultX = Math.Cos(angle) * forceM;
                         resultY = Math.Sin(angle) * forceM;
                     if(item.Location.Y < positionY && flagUp||!flagDown) {
-                            item.OffsetTo.Height -= (float)resultY;
-                            item.OffsetTo.Width -= (float)resultX;
+                            //item.OffsetTo.Height -= (float)resultY;
+                            //item.OffsetTo.Width -= (float)resultX;
+                            item.OffsetTo.AddOffset(-(float)resultX, -(float)resultY);
+                           
                         } else {
-                            item.OffsetTo.Height += (float)resultY;
-                        item.OffsetTo.Width  += (float)resultX;
+                            //item.OffsetTo.Height += (float)resultY;
+                            //item.OffsetTo.Width  += (float)resultX;
+                            item.OffsetTo.AddOffset((float)resultX, (float)resultY);
                         }
                        
                     }
@@ -240,8 +254,9 @@ namespace DiagramPoints {
                     resultX += ((DiagramConstant.MaxDistanceBetweenItemsForSetPower - distance) * (item1.Location.X - item2.Location.X) / distance) * DiagramConstant.ForceOfRepelBetweenItems;
                     resultY += ((DiagramConstant.MaxDistanceBetweenItemsForSetPower - distance) * (item1.Location.Y - item2.Location.Y) / distance) * DiagramConstant.ForceOfRepelBetweenItems;
                 }
-                item1.OffsetTo.Width  += (float)resultX;
-                item1.OffsetTo.Height += (float)resultY;
+               //item1.OffsetTo.Width  += (float)resultX;
+               // item1.OffsetTo.Height += (float)resultY;
+                item1.OffsetTo.AddOffset((float)resultX, (float)resultY);
             }
         }
 
@@ -271,58 +286,19 @@ namespace DiagramPoints {
         internal void PrepareForBestFit(Size Size) {
             GraphProcessor processor = new GraphProcessor(DiagramItems, DiagramRelations);
             List<Graph> listGraph = processor.SearchConnectedComponents();
-            int x = 0;
-            foreach(var item in listGraph) {
-                List<DiagramRelation> relations = processor.GetMST(item.Edges);
-                GraphItem rootGraphItem = null;
-                foreach(var relation in relations) {
-                    if(relation.Item1 is GraphItem && relation.Item2 is GraphItem) continue;
-                    if(rootGraphItem == null) {
-                        rootGraphItem = new GraphItem(this);
-                        int indexToRemoveItem1 = relation.Item1.Id;
-                        DiagramItems.RemoveAt(indexToRemoveItem1);
-                        DiagramItems.Insert(indexToRemoveItem1, rootGraphItem);
-                        GraphItem childGraphItem = new GraphItem(this);
-                        int indexToRemoveItem2 = relation.Item2.Id;
-                        DiagramItems.RemoveAt(indexToRemoveItem2);
-                        DiagramItems.Insert(indexToRemoveItem2, childGraphItem);
-                        rootGraphItem.ChildItems.Add(childGraphItem);
-                        continue;
-                    }
-                    GraphItem parentItem;
-                    GraphItem childItem;
-                    int indexToRemove = -1;
-                    if(DiagramItems[relation.Item1.Id] is GraphItem) {
-                        parentItem = DiagramItems[relation.Item1.Id] as GraphItem;
-                        childItem = new GraphItem(this);
-                        indexToRemove = relation.Item2.Id;
-                    } else {
-                        parentItem = DiagramItems[relation.Item2.Id] as GraphItem;
-                        childItem = new GraphItem(this);
-                        indexToRemove= relation.Item1.Id;
-                    }
-                    DiagramItems.RemoveAt(indexToRemove);
-                    DiagramItems.Insert(indexToRemove, childItem);
-                    if(!parentItem.ChildItems.Contains(childItem)) {
-                        parentItem.ChildItems.Add(childItem);
-                    }
+            int globalY = Size.Height / DiagramItems.Count;
+            int beginX = 0;
+            int beginY = 0;
+            foreach(var graph in listGraph.OrderBy(e=>e.Vertices.Count)) {
+                int globalX = Size.Width / graph.Vertices.Count;
+                beginX = 0;
+                int counter = 0;
+                foreach(var vertices in graph.Vertices.OrderBy(e => e.EdgesCount)) {
+                    vertices.Location = new PointF(counter % 2 == 0 ? beginX : Size.Width - beginX, DiagramConstant.Random.Next(beginY, beginY + graph.Vertices.Count * globalY));
+                    beginX += globalX;
+                    counter++;
                 }
-                if(rootGraphItem != null) {
-                    rootGraphItem.DoBestFit(ref x, 100);
-                    x += rootGraphItem.grapWidth/2;
-                }
-            }
-            foreach(var item in DiagramRelations) {
-                item.Item1 = DiagramItems[item.Item1.Id];
-                item.Item2 = DiagramItems[item.Item2.Id];
-
-            }
-            x = 0;
-            foreach(var item in DiagramItems) {
-                if(!(item is GraphItem)) {
-                    item.Location = new PointF(x, 0);
-                    x += DiagramConstant.GraphWidth;
-                }
+                beginY += graph.Vertices.Count * globalY;
             }
         }
 

@@ -82,8 +82,10 @@ namespace Parse.Test {
             Assert.IsNotNull(graph.DiagramRelations);
             Assert.AreEqual(41, graph.DiagramRelations.Count);
         }
-
-        string GetTextProgram() {
+        public static string GetTextProgram() {
+            return "graph {	a -- { b c d }; b -- { c e }; }";
+        }
+        public static string GetTextProgramEx() {
             return "graph {	a -- { b c d }; b -- { c e }; c -- { e f }; d -- { f g }; e -- h; f -- { h i j g }; g -- k; h -- l; i -- { l m j }; j -- { m n k }; k -- { n r }; l -- { o m }; m -- { o p n }; n -- { q r }; o -- { s p }; p -- { s t q }; q -- { t r }; r -- t; s -- z;  t -- z; }";
         }
 

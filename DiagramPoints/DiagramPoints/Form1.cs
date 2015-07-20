@@ -19,10 +19,12 @@ namespace DiagramPoints{
             InitializeComponent();
             timer.Interval = 1;
             timer.Tick += timer_Tick;
+
+            helper.Load(Parse.Test.SimpleParseTest.GetTextProgramEx());
+
         }
         void timer_Tick(object sender, EventArgs e) {
-            helper.DoBestFit();
-            
+            bestFit(sender, e);
         }
         public void AddItem(object sender, EventArgs e) {
             DiagramItem item = new DiagramItem(helper);
@@ -73,7 +75,7 @@ namespace DiagramPoints{
 
         private void bestFit(object sender, EventArgs e) {
             helper.DoBestFit();
-            
+            diagramControl1.Invalidate();
         }
 
         public void clear(object sender, EventArgs e) {
