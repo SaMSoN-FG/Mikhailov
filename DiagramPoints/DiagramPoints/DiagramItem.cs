@@ -34,8 +34,7 @@ namespace DiagramPoints {
             //locationCore.X += float.IsInfinity(OffsetTo.Width) || Math.Abs(OffsetTo.Width) < DiagramConstant.Epsilon ? 0 : OffsetTo.Width;
             //locationCore.Y += float.IsInfinity(OffsetTo.Height) || Math.Abs(OffsetTo.Height) < DiagramConstant.Epsilon ? 0 : OffsetTo.Height;
 
-
-            locationCore = OffsetTo.GetSumOffset(locationCore);
+            locationCore = OffsetTo.GetSumOffset(locationCore); 
             //OffsetTo = SizeF.Empty;
             OffsetTo.Clear();
         }
@@ -47,8 +46,15 @@ namespace DiagramPoints {
         List<SizeF> offsetCore = new List<SizeF>();
         public void AddOffset(float dx, float dy) { offsetCore.Add(new SizeF(dx, dy)); }
         public PointF GetSumOffset(PointF location) {
-            PointF result = location;
-            foreach(SizeF size in offsetCore) result = new PointF(result.X + size.Width, result.Y + size.Height);
+            PointF result = PointF.Empty;
+            foreach(SizeF size in offsetCore) result = result + size;
+            float sx, sy;
+            sx = Math.Abs(result.X);
+            sy = Math.Abs(result.Y);
+            if(sx <= 1) result.X = 0;
+            if(sy <= 1) result.Y= 0;
+
+            result = result + new SizeF(location);
             if(result.X < 0) result.X = 0;
             if(result.Y < 0) result.Y = 0;
             return result;
