@@ -286,19 +286,58 @@ namespace DiagramPoints {
         internal void PrepareForBestFit(Size Size) {
             GraphProcessor processor = new GraphProcessor(DiagramItems, DiagramRelations);
             List<Graph> listGraph = processor.SearchConnectedComponents();
-            int globalY = Size.Height / DiagramItems.Count;
-            int beginX = 0;
-            int beginY = 0;
-            foreach(var graph in listGraph.OrderBy(e=>e.Vertices.Count)) {
-                int globalX = Size.Width / graph.Vertices.Count;
-                beginX = 0;
-                int counter = 0;
-                foreach(var vertices in graph.Vertices.OrderBy(e => e.EdgesCount)) {
-                    vertices.Location = new PointF(counter % 2 == 0 ? beginX : Size.Width - beginX, DiagramConstant.Random.Next(beginY, beginY + graph.Vertices.Count * globalY));
-                    beginX += globalX;
-                    counter++;
+            int x = 0;
+            foreach(var item in listGraph) {
+                List<DiagramRelation> relations = processor.GetMST(item.Edges);
+                GraphItem rootGraphItem = null;
+                foreach(var relation in relations) {
+                    if(relation.Item1 is GraphItem && relation.Item2 is GraphItem) continue;
+                    if(rootGraphItem == null) {
+                        rootGraphItem = new GraphItem(this);
+                        int indexToRemoveItem1 = relation.Item1.Id;
+                        DiagramItems.RemoveAt(indexToRemoveItem1);
+                        DiagramItems.Insert(indexToRemoveItem1, rootGraphItem);
+                        GraphItem childGraphItem = new GraphItem(this);
+                        int indexToRemoveItem2 = relation.Item2.Id;
+                        DiagramItems.RemoveAt(indexToRemoveItem2);
+                        DiagramItems.Insert(indexToRemoveItem2, childGraphItem);
+                        rootGraphItem.ChildItems.Add(childGraphItem);
+                        continue;
+                    }
+                    GraphItem parentItem;
+                    GraphItem childItem;
+                    int indexToRemove = -1;
+                    if(DiagramItems[relation.Item1.Id] is GraphItem) {
+                        parentItem = DiagramItems[relation.Item1.Id] as GraphItem;
+                        childItem = new GraphItem(this);
+                        indexToRemove = relation.Item2.Id;
+                    } else {
+                        parentItem = DiagramItems[relation.Item2.Id] as GraphItem;
+                        childItem = new GraphItem(this);
+                        indexToRemove = relation.Item1.Id;
+                    }
+                    DiagramItems.RemoveAt(indexToRemove);
+                    DiagramItems.Insert(indexToRemove, childItem);
+                    if(!parentItem.ChildItems.Contains(childItem)) {
+                        parentItem.ChildItems.Add(childItem);
+                    }
                 }
-                beginY += graph.Vertices.Count * globalY;
+                if(rootGraphItem != null) {
+                    rootGraphItem.DoBestFit(ref x, 100);
+                    x += rootGraphItem.grapWidth / 2;
+                }
+            }
+            foreach(var item in DiagramRelations) {
+                item.Item1 = DiagramItems[item.Item1.Id];
+                item.Item2 = DiagramItems[item.Item2.Id];
+
+            }
+            x = 0;
+            foreach(var item in DiagramItems) {
+                if(!(item is GraphItem)) {
+                    item.Location = new PointF(x, 0);
+                    x += DiagramConstant.GraphWidth;
+                }
             }
         }
 
