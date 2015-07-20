@@ -19,6 +19,10 @@ namespace DiagramPoints {
             get { return vertices.Count - edges.Count == 1; }
         }
     }
+    class Edge {
+        public DiagramRelation Relation { get; set; }
+        public int Weight { get; set; }
+    }
     class GraphProcessor {
         List<DiagramItem> vertices;
         List<DiagramRelation> edges;
@@ -81,6 +85,37 @@ namespace DiagramPoints {
                     }
                 }
             }
+        }
+        public List<DiagramRelation> GetMST(List<Edge> edges) {
+            edges.OrderBy(x => x.Weight);
+            List<DiagramRelation> result = new List<DiagramRelation>();
+            List<int> subtreeIds = InitSubTreeIds();
+            for (int i = 0; i < edges.Count; i++) {
+                var edge = edges[i];
+                int item1Id = edge.Relation.Item1.Id;
+                int item2Id = edge.Relation.Item2.Id;
+                if (subtreeIds[item1Id] != subtreeIds[item2Id]) {
+                    result.Add(edge.Relation);
+                    CombineTrees(subtreeIds, item1Id, item2Id);
+                }
+            }
+            return result;
+        }
+        void CombineTrees(List<int> subtreeIds, int item1Id, int item2Id) {
+            int currentId = subtreeIds[item2Id];
+            int newId = subtreeIds[item1Id];
+            for (int i = 0; i < vertices.Count; i++) {
+                if (subtreeIds[i] == currentId) {
+                    subtreeIds[i] = newId;
+                }
+            }
+        }
+        List<int> InitSubTreeIds() {
+            var subtreeIds = new List<int>();
+            for (int i = 0; i < vertices.Count; i++) {
+                subtreeIds.Add(i);
+            }
+            return subtreeIds;
         }
     }
 }

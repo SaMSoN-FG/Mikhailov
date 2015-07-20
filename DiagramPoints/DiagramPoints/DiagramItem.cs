@@ -35,10 +35,6 @@ namespace DiagramPoints {
         }
 
         public DiagramHelper Owner { get; set; }
-
-        internal PointF[] GetAreaPoints() {
-            PointF[] points = new PointF[] { new PointF(locationCore.X - Size.Width / 2, locationCore.Y), new PointF(locationCore.X, locationCore.Y - Size.Height / 2), new PointF(locationCore.X + Size.Width / 2, locationCore.Y), new PointF(locationCore.X, locationCore.Y + Size.Height / 2) };
-            return points; 
-        }
+        public string Name { get; set; }
     }
 }
