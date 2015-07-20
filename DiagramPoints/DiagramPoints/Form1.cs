@@ -24,8 +24,7 @@ namespace DiagramPoints{
 
         }
         void timer_Tick(object sender, EventArgs e) {
-            helper.DoBestFit();
-            
+            bestFit(sender, e);
         }
         public void AddItem(object sender, EventArgs e) {
             DiagramItem item = new DiagramItem(helper);
@@ -76,7 +75,7 @@ namespace DiagramPoints{
 
         private void bestFit(object sender, EventArgs e) {
             helper.DoBestFit();
-            
+            diagramControl1.Invalidate();
         }
 
         public void clear(object sender, EventArgs e) {

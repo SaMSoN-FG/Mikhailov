@@ -16,22 +16,18 @@ namespace DiagramPoints {
         internal Size globalOffset = Size.Empty;
         DiagramItem dragItem;
         Point startPoint = Point.Empty;
-        Timer paintTimer = new Timer();
+        //Timer paintTimer = new Timer();
         public DiagramControl() {
             InitializeComponent();
             this.DoubleBuffered = true;
             AutoScroll = true;
-            paintTimer.Interval = 100;
-            paintTimer.Start();
+            //paintTimer.Interval = 100;
+            //paintTimer.Start();
           //  paintTimer.Tick += paintTimer_Tick;
         }
         protected override void OnCreateControl() {
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             base.OnCreateControl();
-        }
-        void paintTimer_Tick(object sender, EventArgs e) {
-            Invalidate();
-            Update();
         }
         protected override void OnSizeChanged(EventArgs e) {
             base.OnSizeChanged(e);
