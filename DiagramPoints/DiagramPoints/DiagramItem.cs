@@ -16,7 +16,13 @@ namespace DiagramPoints {
                 return new RectangleF(Location.X - 5, Location.Y - 5, 10, 10);
             }
         }
-        public int Id { get { return Owner.DiagramItems.IndexOf(this); } }
+        int idCore = -1;
+        public int Id {
+            get {
+                if(idCore == -1) idCore = Owner.DiagramItems.IndexOf(this);
+                return idCore;
+            }
+        }
         PointF locationCore;
         [XtraSerializableProperty()]
         public PointF Location { get { return locationCore; } set { locationCore = value; } }
@@ -41,6 +47,10 @@ namespace DiagramPoints {
 
         public DiagramHelper Owner { get; set; }
         public string Name { get; set; }
+        internal PointF[] GetAreaPoints() {
+            PointF[] points = new PointF[] { new PointF(locationCore.X - Size.Width / 2, locationCore.Y), new PointF(locationCore.X, locationCore.Y - Size.Height / 2), new PointF(locationCore.X + Size.Width / 2, locationCore.Y), new PointF(locationCore.X, locationCore.Y + Size.Height / 2) };
+            return points;
+        }
     }
     public class DiagramItemOffset {
         List<SizeF> offsetCore = new List<SizeF>();

@@ -8,13 +8,13 @@ namespace DiagramPoints{
     public static class DiagramConstant {
         public const double Epsilon = 0.001;
 
-        public const double ForceOfRepelBetweenItems = 0.2;
+        public const double ForceOfRepelBetweenItems = 0.1;
         public const double ForceOfCenterRealtion = 36.5;
-        public const double ForceOfRepelRelation = 0.02;
+        public const double ForceOfRepelRelation = 0.1;
         public const double PowerByCenterOfNonIntersectedPoints = 50;
 
         public const double MaxDistanceBetweenItemsForSetPower = 100;
-        public const double BestLengthOfRepelRelation = 0.02;
+        public const double BestLengthOfRepelRelation = 50;
 
         public const int GraphWidth = 10;
         public const int GraphHeight = 100;

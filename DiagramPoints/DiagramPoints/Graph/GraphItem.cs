@@ -24,7 +24,7 @@ namespace DiagramPoints {
                 ChildItems.Add(item);
             }
         }
-        int grapWidth {
+        internal int grapWidth {
             get {
                 if(ChildItems.Count == 0) return Bounds.Right + DiagramConstant.GraphWidth / 2;
                 return GetGraphWidthFromChildItems();

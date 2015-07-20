@@ -4,15 +4,21 @@ using System.Linq;
 namespace DiagramPoints {
    class Graph {
         List<DiagramItem> vertices;
-        List<DiagramRelation> edges;
+        List<Edge> edges;
         public Graph(List<DiagramItem> vertices, List<DiagramRelation> edges) {
             this.vertices = vertices;
-            this.edges = edges;
+            this.edges = new List<Edge>();
+            foreach(var item in edges) {
+                int item1Id = item.Item1.Id;
+                int item2Id = item.Item2.Id;
+                this.edges.Add(new Edge() { Relation = item, Weight = edges.Count(e => e.Item1.Id == item1Id || e.Item2.Id == item1Id || e.Item1.Id == item2Id || e.Item2.Id == item2Id && item != e) });
+            }
+
         }
         public List<DiagramItem> Vertices {
             get { return vertices; }
         }
-        public List<DiagramRelation> Edges {
+        public List<Edge> Edges {
             get { return edges; }
         }
         public bool IsTree {
